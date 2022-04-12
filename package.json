@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-simple-maps": "^1.0.8",
     "next": "12.1.4",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-simple-maps": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "17.0.23",
-    "@types/react": "18.0.2",
+    "@types/react": "18.0.1",
     "@types/react-dom": "18.0.0",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.4",
