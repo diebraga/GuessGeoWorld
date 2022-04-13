@@ -1,7 +1,9 @@
 import { Box, Text, useToast, Wrap } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { FormEvent, memo, useState } from "react";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
+import { Confetti } from "../Confetti";
 import { FoundNewCountryToast } from "./FoundNewCountryToast";
 import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
@@ -15,6 +17,8 @@ type FoundCountries = {
 const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
+
+  const [mapIsCompleted, setMapIsCompleted] = useState(false)
 
   const toast = useToast()
 
@@ -30,8 +34,17 @@ const WorldCountriesMap = () => {
     }
   }
 
+  useEffect(() => {
+    if (foundCountries.length === AllCountries.length) {
+      setMapIsCompleted(true)
+    }
+  }, [foundCountries])
+
   return (
     <Box display='block' overflowY='scroll'>
+
+      <Confetti isActive={mapIsCompleted} />
+
       <Box pl="3" pr="3" pt="3" mt="2">
         <Wrap overflowY='scroll' overflowX='hidden' h="80px">
           {foundCountries.map(country => <FoundWorldCountriesList

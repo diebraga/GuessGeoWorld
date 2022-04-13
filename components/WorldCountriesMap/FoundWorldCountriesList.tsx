@@ -24,7 +24,7 @@ export function FoundWorldCountriesList({ country, lastCountryFound, foundCountr
   return (
     <>
       <Text fontSize={{ base: '12px', md: '15px', lg: '18px', xl: "20px" }}>
-        {country.name} {foundCountries.length > 0 && lastCountryFound?.id !== country.id && ` -`}
+        {country.name} &nbsp;{foundCountries.length > 0 && lastCountryFound?.id !== country.id && `-`}
       </Text>
       <Box ref={messagesEndRef} />
     </>
