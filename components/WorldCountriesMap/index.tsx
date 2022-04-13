@@ -1,6 +1,7 @@
+import { Box, Button, Flex, Heading, HStack, Input, Text, VStack, Wrap } from "@chakra-ui/react";
 import { FormEvent, memo, useRef, useState } from "react";
 import {
-  ZoomableGroup,
+  Sphere,
   ComposableMap,
   Geographies,
   Geography
@@ -32,28 +33,38 @@ const WorldCountriesMap = () => {
 
   return (
     <>
-      <form onSubmit={addCountry}>
-        <h1>
-          Input country
-        </h1>
-        <input
-          onChange={e => setCountry(e.target.value)}
-          value={country}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {foundCountries.length + "/" + AllCountries.length}
+      <Box as="form" p="3" onSubmit={addCountry}>
+        <VStack spacing="2">
+          <Heading>
+            Input country
+          </Heading>
+          <Input
+            onChange={e => setCountry(e.target.value)}
+            value={country}
+          />
+          <HStack spacing='1'>
+            <Button type="submit">Submit</Button>
+            <Button type="button" colorScheme="red">Exit</Button>
+          </HStack>
+        </VStack>
 
-      <div style={{ height: "100px", scrollBehavior: "auto" }}>
-        {foundCountries.map(country => {
-          return (
-            <p key={country.id}>{country.name}</p>
-          )
-        })}
-      </div>
+        <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
 
-      <ComposableMap data-tip="">
-        <ZoomableGroup>
+        <Wrap>
+          {foundCountries.map(country => {
+            const lastCountryFound = [...foundCountries].pop()
+
+            return (
+              <Text key={country.id} fontSize={{ base: '12px', md: '15px', lg: '18px', xl: "20px" }}>
+                {country.name} {foundCountries.length > 0 && lastCountryFound?.id !== country.id && ` -`}
+              </Text>
+            )
+          })}
+        </Wrap>
+      </Box>
+
+      <Box w="100%" p="3" position="sticky">
+        <ComposableMap data-tip="" projectionConfig={{ scale: 147 }}>
           <Geographies geography={MAP}>
             {({ geographies }) => {
               countriesRef.current = (geographies.map(item => item.properties.NAME))
@@ -90,8 +101,8 @@ const WorldCountriesMap = () => {
             }
             }
           </Geographies>
-        </ZoomableGroup>
-      </ComposableMap>
+        </ComposableMap>
+      </Box>
     </>
   );
 };
