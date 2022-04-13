@@ -1,9 +1,10 @@
-import { Box, Text, useToast, Wrap } from "@chakra-ui/react";
+import { Box, Text, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { FormEvent, memo, useState } from "react";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
-import { Confetti } from "../Confetti";
+import { FoundAllCountriesModal } from "./FoundAllCountriesModal";
 import { FoundNewCountryToast } from "./FoundNewCountryToast";
 import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
@@ -18,9 +19,10 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
-  const [mapIsCompleted, setMapIsCompleted] = useState(false)
+  const router = useRouter()
 
   const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   function addCountry(e: FormEvent) {
     e.preventDefault()
@@ -34,16 +36,29 @@ const WorldCountriesMap = () => {
     }
   }
 
+  function onCloseMapModal() {
+    onClose()
+    router.push("/")
+  }
+
+  function onRestartGame() {
+    onClose()
+    setFoundCountries([])
+  }
+
   useEffect(() => {
     if (foundCountries.length === AllCountries.length) {
-      setMapIsCompleted(true)
+      onOpen()
     }
   }, [foundCountries])
 
   return (
     <Box display='block' overflowY='scroll'>
-
-      <Confetti isActive={mapIsCompleted} />
+      <FoundAllCountriesModal
+        isOpen={isOpen}
+        onClose={onCloseMapModal}
+        onRestart={onRestartGame}
+      />
 
       <Box pl="3" pr="3" pt="3" mt="2">
         <Wrap overflowY='scroll' overflowX='hidden' h="80px">
