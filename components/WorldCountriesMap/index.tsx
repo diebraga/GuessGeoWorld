@@ -1,13 +1,8 @@
-import { Box, Button, Heading, HStack, Input, Text, VStack, Wrap } from "@chakra-ui/react";
-import { FormEvent, memo, useEffect, useRef, useState } from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography
-} from "react-simple-maps";
-import MAP from '../../map/geoUrl.json'
+import { Box, Text, useToast, Wrap } from "@chakra-ui/react";
+import { FormEvent, memo, useState } from "react";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
+import { FoundNewCountryToast } from "./FoundNewCountryToast";
 import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
 import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
@@ -21,20 +16,23 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
+  const toast = useToast()
+
   function addCountry(e: FormEvent) {
     e.preventDefault()
     if (findCountryHelper(country) !== "") {
       setFoundCountries(prev => [...prev, { name: findCountryHelper(country), id: '_' + Math.random().toString(36).substr(2, 9) }])
-      alert(`A new country was found ${findCountryHelper(country)}`)
       setCountry("")
+      toast({
+        position: 'top',
+        render: () => <FoundNewCountryToast countryName={findCountryHelper(country)} />
+      })
     }
   }
 
   return (
     <Box display='block' overflowY='scroll'>
-      <Box pl="3" pr="3" pt="3">
-        <Text mt="2" mb="3">{foundCountries.length + "/" + AllCountries.length}</Text>
-
+      <Box pl="3" pr="3" pt="3" mt="2">
         <Wrap overflowY='scroll' overflowX='hidden' h="80px">
           {foundCountries.map(country => <FoundWorldCountriesList
             key={country.id}
@@ -43,6 +41,7 @@ const WorldCountriesMap = () => {
             foundCountries={foundCountries}
           />)}
         </Wrap>
+        <Text mb="3">{foundCountries.length + "/" + AllCountries.length}</Text>
       </Box>
 
       <WorldCountriesMapInput
