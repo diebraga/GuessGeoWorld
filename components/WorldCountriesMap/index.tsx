@@ -6,6 +6,7 @@ import {
   Geography
 } from "react-simple-maps";
 import MAP from '../../map/geoUrl.json'
+import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
 
 type FoundCountries = {
@@ -17,9 +18,9 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
 
   const countriesRef = useRef<string[]>([])
-  console.log(countriesRef)
+  // console.log(countriesRef)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
-  console.log(foundCountries)
+
   function addCountry(e: FormEvent) {
     e.preventDefault()
     if (findCountryHelper(country) !== "") {
@@ -32,17 +33,24 @@ const WorldCountriesMap = () => {
   return (
     <>
       <form onSubmit={addCountry}>
+        <h1>
+          Input country
+        </h1>
         <input
           onChange={e => setCountry(e.target.value)}
           value={country}
         />
         <button type="submit">Submit</button>
       </form>
-      {foundCountries.map(country => {
-        return (
-          <p key={country.id}>{country.name}</p>
-        )
-      })}
+      {foundCountries.length + "/" + AllCountries.length}
+
+      <div style={{ height: "100px", scrollBehavior: "auto" }}>
+        {foundCountries.map(country => {
+          return (
+            <p key={country.id}>{country.name}</p>
+          )
+        })}
+      </div>
 
       <ComposableMap data-tip="">
         <ZoomableGroup>
@@ -67,7 +75,7 @@ const WorldCountriesMap = () => {
                           outline: "none"
                         },
                         hover: {
-                          fill: "green",
+                          fill: "#D6D6DA",
                           outline: "none"
                         },
                         // pressed: {

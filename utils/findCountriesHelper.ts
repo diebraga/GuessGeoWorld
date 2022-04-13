@@ -24,11 +24,14 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "antarctica") {
     return "Antarctica"
   }
-  else if (formattedCountryName === "antarctica") {
-    return "Antarctica"
+  else if (formattedCountryName === "Antigua and Barbuda") {
+    return "Antigua and Barbuda"
   }
   else if (formattedCountryName === "australia") {
     return "Australia"
+  }
+  else if (formattedCountryName === "andora") {
+    return "Andora"
   }
   else if (formattedCountryName === "austria") {
     return "Austria"
@@ -56,6 +59,9 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "bahamas") {
     return "Bahamas"
+  }
+  else if (formattedCountryName === "bahrain") {
+    return "Bahrain"
   }
   else if (formattedCountryName === "bosniaandherz." || formattedCountryName === "bosnia" || formattedCountryName === "bosniaandherzegovina") {
     return "Bosnia and Herz."
@@ -117,7 +123,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "cyprus") {
     return "Cyprus"
   }
-  else if (formattedCountryName === "czechia") {
+  else if (formattedCountryName === "czechia" || formattedCountryName === "czechrepublic") {
     return "Czechia"
   }
   else if (formattedCountryName === "germany") {
@@ -128,6 +134,9 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "denmark") {
     return "Denmark"
+  }
+  else if (formattedCountryName === "dominica") {
+    return "Dominica"
   }
   else if (formattedCountryName === "dominicanrep." || formattedCountryName === "dominicanrepublic") {
     return "Dominican Rep."
@@ -144,8 +153,14 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "eritrea") {
     return "Eritrea"
   }
-  else if (formattedCountryName === "Spain") {
+  else if (formattedCountryName === "spain") {
     return "Spain"
+  }
+  else if (formattedCountryName === "tonga") {
+    return "Tonga"
+  }
+  else if (formattedCountryName === "seychelles") {
+    return "Seychelles"
   }
   else if (formattedCountryName === "estonia") {
     return "Estonia"
@@ -174,7 +189,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "guinea") {
     return "Guinea"
   }
-  else if (formattedCountryName === "unitedkingdom") {
+  else if (formattedCountryName === "unitedkingdom" || formattedCountryName === "greatbritain") {
     return "United Kingdom"
   }
   else if (formattedCountryName === "gambia") {
@@ -185,6 +200,12 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "eq.guinea" || formattedCountryName === "equatorialguinea") {
     return "Eq. Guinea"
+  }
+  else if (formattedCountryName === "grenada") {
+    return "Grenada"
+  }
+  else if (formattedCountryName === "saintvincentandthegrenadines" || formattedCountryName === "stvincentandthegrenadines") {
+    return "St Vincent and the Grenadines"
   }
   else if (formattedCountryName === "greece") {
     return "Greece"
@@ -213,7 +234,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "indonesia") {
     return "Indonesia"
   }
-  else if (formattedCountryName === "India") {
+  else if (formattedCountryName === "india") {
     return "India"
   }
   else if (formattedCountryName === "ireland") {
@@ -282,6 +303,9 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "lithuania") {
     return "Lithuania"
   }
+  else if (formattedCountryName === "liechtenstein") {
+    return "Liechtenstein"
+  }
   else if (formattedCountryName === "luxembourg") {
     return "Luxembourg"
   }
@@ -299,6 +323,9 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "madagascar") {
     return "Madagascar"
+  }
+  else if (formattedCountryName === "marshallislnads") {
+    return "Marshall Islnads"
   }
   else if (formattedCountryName === "mexico") {
     return "Mexico"
@@ -318,17 +345,44 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "mongolia") {
     return "Mongolia"
   }
+  else if (formattedCountryName === "monaco") {
+    return "Monaco"
+  }
   else if (formattedCountryName === "mozambique") {
     return "Mozambique"
   }
   else if (formattedCountryName === "mauritania") {
     return "Mauritania"
   }
+  else if (formattedCountryName === "mauritius") {
+    return "Mauritius"
+  }
+  else if (formattedCountryName === "Comoros") {
+    return "Comoros"
+  }
+  else if (formattedCountryName === "caboverde") {
+    return "Cabo Verde"
+  }
+  else if (formattedCountryName === "kiribati") {
+    return "Kiribati"
+  }
+  else if (formattedCountryName === "Micronesia") {
+    return "Micronesia"
+  }
   else if (formattedCountryName === "malawi") {
     return "Malawi"
   }
+  else if (formattedCountryName === "malta") {
+    return "Malta"
+  }
+  else if (formattedCountryName === "maldives") {
+    return "Maldives"
+  }
   else if (formattedCountryName === "malaysia") {
     return "Malaysia"
+  }
+  else if (formattedCountryName === "barbados") {
+    return "Barbados"
   }
   else if (formattedCountryName === "namibia") {
     return "Namibia"
@@ -350,6 +404,18 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "nepal") {
     return "Nepal"
+  }
+  else if (formattedCountryName === "palau") {
+    return "Palau"
+  }
+  else if (formattedCountryName === "tuvalu") {
+    return "Tuvalu"
+  }
+  else if (formattedCountryName === "nauru") {
+    return "Nauru"
+  }
+  else if (formattedCountryName === "vatican" || formattedCountryName === "vaticancity" || formattedCountryName === "holysee") {
+    return "Vatican"
   }
   else if (formattedCountryName === "newzealand") {
     return "New Zealand"
@@ -402,8 +468,23 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "saudiarabia") {
     return "Saudi Arabia"
   }
+  else if (formattedCountryName === "sanmarino") {
+    return "San Marino"
+  }
   else if (formattedCountryName === "sudan") {
     return "Sudan"
+  }
+  else if (formattedCountryName === "samoa") {
+    return "Samoa"
+  }
+  else if (formattedCountryName === "saintkittsandnevis") {
+    return "Saint Kitts and Nevis"
+  }
+  else if (formattedCountryName === "saintlucia") {
+    return "Saint Lucia"
+  }
+  else if (formattedCountryName === "saotome&principe" || formattedCountryName === "saotomeandprincipe") {
+    return "Sao Tome & Principe"
   }
   else if (formattedCountryName === "s.sudan" || formattedCountryName === "southsudan") {
     return "S. Sudan"
