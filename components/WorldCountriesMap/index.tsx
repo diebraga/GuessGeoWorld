@@ -1,7 +1,6 @@
-import { Box, Button, Flex, Heading, HStack, Input, Text, VStack, Wrap } from "@chakra-ui/react";
-import { FormEvent, memo, useRef, useState } from "react";
+import { Box, Button, Heading, HStack, Input, Text, VStack, Wrap } from "@chakra-ui/react";
+import { FormEvent, memo, useEffect, useRef, useState } from "react";
 import {
-  Sphere,
   ComposableMap,
   Geographies,
   Geography
@@ -9,6 +8,9 @@ import {
 import MAP from '../../map/geoUrl.json'
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
+import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
+import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
+import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
 
 type FoundCountries = {
   name: string
@@ -17,9 +19,6 @@ type FoundCountries = {
 
 const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
-
-  const countriesRef = useRef<string[]>([])
-  // console.log(countriesRef)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
   function addCountry(e: FormEvent) {
@@ -32,78 +31,28 @@ const WorldCountriesMap = () => {
   }
 
   return (
-    <>
-      <Box as="form" p="3" onSubmit={addCountry}>
-        <VStack spacing="2">
-          <Heading>
-            Input country
-          </Heading>
-          <Input
-            onChange={e => setCountry(e.target.value)}
-            value={country}
-          />
-          <HStack spacing='1'>
-            <Button type="submit">Submit</Button>
-            <Button type="button" colorScheme="red">Exit</Button>
-          </HStack>
-        </VStack>
+    <Box display='block' overflowY='scroll'>
+      <Box pl="3" pr="3" pt="3">
+        <Text mt="2" mb="3">{foundCountries.length + "/" + AllCountries.length}</Text>
 
-        <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
-
-        <Wrap>
-          {foundCountries.map(country => {
-            const lastCountryFound = [...foundCountries].pop()
-
-            return (
-              <Text key={country.id} fontSize={{ base: '12px', md: '15px', lg: '18px', xl: "20px" }}>
-                {country.name} {foundCountries.length > 0 && lastCountryFound?.id !== country.id && ` -`}
-              </Text>
-            )
-          })}
+        <Wrap overflowY='scroll' overflowX='hidden' h="80px">
+          {foundCountries.map(country => <FoundWorldCountriesList
+            key={country.id}
+            country={country}
+            lastCountryFound={[...foundCountries].pop()}
+            foundCountries={foundCountries}
+          />)}
         </Wrap>
       </Box>
 
-      <Box w="100%" p="3" position="sticky">
-        <ComposableMap data-tip="" projectionConfig={{ scale: 147 }}>
-          <Geographies geography={MAP}>
-            {({ geographies }) => {
-              countriesRef.current = (geographies.map(item => item.properties.NAME))
-              return (
-                geographies.map(geo => {
-                  const { NAME, POP_EST } = geo.properties as { NAME: string, POP_EST: string }
-                  // setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-                  // console.log(NAME)
+      <WorldCountriesMapInput
+        addCountry={addCountry}
+        country={country}
+        setCountry={setCountry}
+      />
 
-                  const isCountryFound = foundCountries.some(country => country.name === NAME)
-
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      style={{
-                        default: {
-                          fill: isCountryFound ? "green" : "#D6D6DA",
-                          outline: "none"
-                        },
-                        hover: {
-                          fill: "#D6D6DA",
-                          outline: "none"
-                        },
-                        // pressed: {
-                        //   fill: "#E42",
-                        //   outline: "none"
-                        // }
-                      }}
-                    />
-                  )
-                })
-              )
-            }
-            }
-          </Geographies>
-        </ComposableMap>
-      </Box>
-    </>
+      <WorldCountriesMapCanvas foundCountries={foundCountries} />
+    </Box>
   );
 };
 
