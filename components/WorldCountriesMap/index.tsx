@@ -8,6 +8,7 @@ import { FoundAllCountriesModal } from "./FoundAllCountriesModal";
 import { FoundNewCountryToast } from "./FoundNewCountryToast";
 import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
 import { LeaveWorldCountriesGameAlert } from "./LeaveWorldCountriesGameAlert";
+import { ModalMissedCountries } from "./ModalMissedCountries";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
 import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
 
@@ -30,9 +31,15 @@ const WorldCountriesMap = () => {
   } = useDisclosure()
 
   const {
-    isOpen: leaveGameIsOpen,
-    onOpen: leaveGameOnOpen,
-    onClose: leaveGameOnClose
+    isOpen: leaveGameIsOpenAlert,
+    onOpen: leaveGameOnOpenAlert,
+    onClose: leaveGameOnCloseAlert
+  } = useDisclosure()
+
+  const {
+    isOpen: leaveGameModalIsOpen,
+    onOpen: leaveGameModalOnOpen,
+    onClose: leaveGameModalOnClose
   } = useDisclosure()
 
   const cancelRef = useRef()
@@ -56,17 +63,23 @@ const WorldCountriesMap = () => {
 
   function onRestartGame() {
     completedCountriesModalOnClose()
+    leaveGameModalOnClose()
     setFoundCountries([])
   }
 
   function onLeaveGame() {
-    leaveGameOnOpen()
+    leaveGameOnOpenAlert()
   }
 
   function onConfirmLeaveGame() {
     setFoundCountries([])
-    leaveGameOnClose()
+    leaveGameOnCloseAlert()
     router.push('/')
+  }
+
+  function onConfirmLeaveGameAlert() {
+    leaveGameModalOnOpen()
+    leaveGameOnCloseAlert()
   }
 
   useEffect(() => {
@@ -75,13 +88,22 @@ const WorldCountriesMap = () => {
     }
   }, [foundCountries])
 
+  const countriesNotFound = AllCountries.filter(entry1 => !foundCountries.some(entry2 => entry1.name === entry2.name));
+
   return (
     <Box display='block' overflowY='scroll'>
+      <ModalMissedCountries
+        isOpen={leaveGameModalIsOpen}
+        onClose={onConfirmLeaveGame}
+        countriesNotFound={countriesNotFound}
+        onRestart={onRestartGame}
+      />
+
       <LeaveWorldCountriesGameAlert
-        isOpen={leaveGameIsOpen}
-        onClose={leaveGameOnClose}
+        isOpen={leaveGameIsOpenAlert}
+        onClose={leaveGameOnCloseAlert}
         leastDestructiveRef={cancelRef}
-        onConfirm={onConfirmLeaveGame}
+        onConfirm={onConfirmLeaveGameAlert}
       />
 
       <FoundAllCountriesModal

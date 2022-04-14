@@ -315,9 +315,6 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "morocco") {
     return "Morocco"
   }
-  else if (formattedCountryName === "morocco") {
-    return "Morocco"
-  }
   else if (formattedCountryName === "moldova") {
     return "Moldova"
   }
@@ -553,9 +550,6 @@ export function findCountryHelper(countryName: string) {
     return "Turkey"
   }
   else if (formattedCountryName === "taiwan") {
-    return "Taiwan"
-  }
-  else if (formattedCountryName === "Uganda") {
     return "Taiwan"
   }
   else if (formattedCountryName === "uganda") {
