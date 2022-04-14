@@ -1,12 +1,13 @@
 import { Box, Text, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FormEvent, memo, useState } from "react";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
 import { FoundAllCountriesModal } from "./FoundAllCountriesModal";
 import { FoundNewCountryToast } from "./FoundNewCountryToast";
 import { FoundWorldCountriesList } from "./FoundWorldCountriesList";
+import { LeaveWorldCountriesGameAlert } from "./LeaveWorldCountriesGameAlert";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
 import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
 
@@ -22,7 +23,19 @@ const WorldCountriesMap = () => {
   const router = useRouter()
 
   const toast = useToast()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: completedCountriesModalIsOpen,
+    onOpen: completedCountriesModalOnOpen,
+    onClose: completedCountriesModalOnClose
+  } = useDisclosure()
+
+  const {
+    isOpen: leaveGameIsOpen,
+    onOpen: leaveGameOnOpen,
+    onClose: leaveGameOnClose
+  } = useDisclosure()
+
+  const cancelRef = useRef()
 
   function addCountry(e: FormEvent) {
     e.preventDefault()
@@ -37,30 +50,42 @@ const WorldCountriesMap = () => {
   }
 
   function onCloseMapModal() {
-    onClose()
+    completedCountriesModalOnClose()
     router.push("/")
   }
 
   function onRestartGame() {
-    onClose()
+    completedCountriesModalOnClose()
     setFoundCountries([])
   }
 
   function onLeaveGame() {
+    leaveGameOnOpen()
+  }
+
+  function onConfirmLeaveGame() {
     setFoundCountries([])
-    router.push("/")
+    leaveGameOnClose()
+    router.push('/')
   }
 
   useEffect(() => {
     if (foundCountries.length === AllCountries.length) {
-      onOpen()
+      completedCountriesModalOnOpen()
     }
   }, [foundCountries])
 
   return (
     <Box display='block' overflowY='scroll'>
+      <LeaveWorldCountriesGameAlert
+        isOpen={leaveGameIsOpen}
+        onClose={leaveGameOnClose}
+        leastDestructiveRef={cancelRef}
+        onConfirm={onConfirmLeaveGame}
+      />
+
       <FoundAllCountriesModal
-        isOpen={isOpen}
+        isOpen={completedCountriesModalIsOpen}
         onClose={onCloseMapModal}
         onRestart={onRestartGame}
       />
@@ -80,6 +105,7 @@ const WorldCountriesMap = () => {
         addCountry={addCountry}
         country={country}
         setCountry={setCountry}
+        onLeaveGame={onLeaveGame}
       />
 
       <WorldCountriesMapCanvas foundCountries={foundCountries} />

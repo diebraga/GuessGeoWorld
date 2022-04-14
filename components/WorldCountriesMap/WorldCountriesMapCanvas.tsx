@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import {
   ComposableMap,
   Geographies,
@@ -16,6 +16,8 @@ type WorldCountriesMapCanvasProps = {
 }
 
 export function WorldCountriesMapCanvas({ foundCountries }: WorldCountriesMapCanvasProps) {
+  const foundCountryColor = useColorModeValue("green", "#4299E1");
+
   return (
     <Box w="100%" pl="3" pr="3">
       <ComposableMap data-tip="" projectionConfig={{ scale: 147 }}>
@@ -35,11 +37,11 @@ export function WorldCountriesMapCanvas({ foundCountries }: WorldCountriesMapCan
                     geography={geo}
                     style={{
                       default: {
-                        fill: isCountryFound ? "green" : "#D6D6DA",
+                        fill: isCountryFound ? foundCountryColor : "#D6D6DA",
                         outline: "none"
                       },
                       hover: {
-                        fill: isCountryFound ? "green" : "#D6D6DA",
+                        fill: isCountryFound ? foundCountryColor : "#D6D6DA",
                         outline: "none"
                       },
                       // pressed: {

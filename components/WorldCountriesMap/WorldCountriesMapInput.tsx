@@ -5,9 +5,10 @@ type WorldCountriesMapInputProps = {
   addCountry: (e: FormEvent) => void
   country: string
   setCountry: Dispatch<SetStateAction<string>>
+  onLeaveGame: () => void
 }
 
-export function WorldCountriesMapInput({ addCountry, country, setCountry }: WorldCountriesMapInputProps) {
+export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeaveGame }: WorldCountriesMapInputProps) {
   return (
     <Box as="form" onSubmit={addCountry} pl="3" pr="3">
       <VStack spacing="2">
@@ -19,7 +20,7 @@ export function WorldCountriesMapInput({ addCountry, country, setCountry }: Worl
           value={country}
         />
         <HStack spacing='1'>
-          <Button type="button" colorScheme="red">Leave</Button>
+          <Button type="button" colorScheme="red" onClick={onLeaveGame}>Leave</Button>
           <Button type="submit" colorScheme='linkedin'>Guess</Button>
         </HStack>
       </VStack>
