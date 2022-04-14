@@ -39,7 +39,7 @@ export function WorldCountriesMapCanvas({ foundCountries }: WorldCountriesMapCan
                         outline: "none"
                       },
                       hover: {
-                        fill: "#D6D6DA",
+                        fill: isCountryFound ? "green" : "#D6D6DA",
                         outline: "none"
                       },
                       // pressed: {

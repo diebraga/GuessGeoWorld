@@ -46,6 +46,11 @@ const WorldCountriesMap = () => {
     setFoundCountries([])
   }
 
+  function onLeaveGame() {
+    setFoundCountries([])
+    router.push("/")
+  }
+
   useEffect(() => {
     if (foundCountries.length === AllCountries.length) {
       onOpen()
