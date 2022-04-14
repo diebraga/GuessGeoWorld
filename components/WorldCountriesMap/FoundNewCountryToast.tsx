@@ -1,4 +1,4 @@
-import { Box, useColorModeValue, Flex, Icon } from "@chakra-ui/react";
+import { Box, useColorModeValue, Flex, Icon, Text } from "@chakra-ui/react";
 import { RiCheckboxCircleFill } from 'react-icons/ri'
 
 type FoundNewCountryToastProps = {
@@ -6,6 +6,8 @@ type FoundNewCountryToastProps = {
 }
 
 export function FoundNewCountryToast({ countryName }: FoundNewCountryToastProps) {
+  const result = (Date.now() % 2 == 0) ? "even" : "odd";
+
   return (
     <Flex
       maxW="sm"
@@ -20,7 +22,7 @@ export function FoundNewCountryToast({ countryName }: FoundNewCountryToastProps)
 
       <Flex alignItems="center" px={2} py={3}>
         &nbsp;
-        <Icon as={RiCheckboxCircleFill} boxSize={5} color={useColorModeValue("blue.500", "blue.400")} />
+        <Text as='span'>{result === "even" ? " 🎉" : "🥳"}</Text>
         &nbsp;
         <Flex>
           A new country was found

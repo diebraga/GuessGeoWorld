@@ -65,7 +65,6 @@ const WorldCountriesMap = () => {
           {foundCountries.map(country => <FoundWorldCountriesList
             key={country.id}
             country={country}
-            lastCountryFound={[...foundCountries].pop()}
             foundCountries={foundCountries}
           />)}
         </Wrap>

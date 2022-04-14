@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Tag, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
 type FoundCountries = {
@@ -8,11 +8,10 @@ type FoundCountries = {
 
 type FoundWorldCountriesListProps = {
   country: FoundCountries
-  lastCountryFound: FoundCountries | undefined
   foundCountries: FoundCountries[]
 }
 
-export function FoundWorldCountriesList({ country, lastCountryFound, foundCountries }: FoundWorldCountriesListProps) {
+export function FoundWorldCountriesList({ country, foundCountries }: FoundWorldCountriesListProps) {
   const messagesEndRef = useRef<any>(null)
 
   const scrollToBottom = () => {
@@ -23,9 +22,11 @@ export function FoundWorldCountriesList({ country, lastCountryFound, foundCountr
 
   return (
     <>
-      <Text fontSize={{ base: '12px', md: '15px', lg: '18px', xl: "20px" }}>
-        {country.name} &nbsp;{foundCountries.length > 0 && lastCountryFound?.id !== country.id && `-`}
-      </Text>
+      <Tag>
+        <Text fontSize={{ base: '12px', md: '15px', lg: '18px', xl: "20px" }}>
+          {country.name}
+        </Text>
+      </Tag>
       <Box ref={messagesEndRef} />
     </>
   )
