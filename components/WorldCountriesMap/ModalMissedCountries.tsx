@@ -18,7 +18,7 @@ import { useWindowSize } from '../../hooks/useWindowSize';
 
 type ModalMissedCountriesProps = {
   isOpen: boolean
-  onClose: () => {}
+  onClose: () => void
   countriesNotFound: { name: string }[]
   onRestart: () => void
 }
@@ -41,7 +41,8 @@ export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRes
           <Box
             bg={useColorModeValue("white", "gray.800")}
             borderRadius='md'
-            w="100%"
+            ml="4"
+            mr="4"
           >
             <ModalHeader> 😔 Game ended, Countries missing...</ModalHeader>
             <Box ml="24px" mr="24px" >
