@@ -2,6 +2,7 @@ import { Box, Text, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { FormEvent, memo, useState } from "react";
+import { useSound } from "../../hooks/useSound";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
 import { FoundAllCountriesModal } from "./FoundAllCountriesModal";
@@ -20,6 +21,8 @@ type FoundCountries = {
 const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
+
+  const { startSound } = useSound()
 
   const router = useRouter()
 
@@ -49,6 +52,7 @@ const WorldCountriesMap = () => {
     if (findCountryHelper(country) !== "") {
       setFoundCountries(prev => [...prev, { name: findCountryHelper(country), id: '_' + Math.random().toString(36).substr(2, 9) }])
       setCountry("")
+      startSound()
       toast({
         position: 'top',
         render: () => <FoundNewCountryToast countryName={findCountryHelper(country)} />
