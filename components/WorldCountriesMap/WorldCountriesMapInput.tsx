@@ -1,5 +1,6 @@
 import { Box, Button, Heading, HStack, Input, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { Dispatch, FormEvent, SetStateAction } from "react";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 type WorldCountriesMapInputProps = {
   addCountry: (e: FormEvent) => void
@@ -10,6 +11,8 @@ type WorldCountriesMapInputProps = {
 }
 
 export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeaveGame, isInvalid }: WorldCountriesMapInputProps) {
+  const { width } = useWindowSize()
+
   return (
     <Box as="form" onSubmit={addCountry} pl="3" pr="3">
       <VStack spacing="2">
@@ -24,8 +27,8 @@ export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeav
         />
         {isInvalid && <Text fontSize='xs' color={useColorModeValue("red.500", "red.400")}>country not found</Text>}
         <HStack spacing='1'>
-          <Button type="button" colorScheme="red" onClick={onLeaveGame}>Leave</Button>
-          <Button type="submit" colorScheme='linkedin'>Guess</Button>
+          <Button type="button" colorScheme="red" onClick={onLeaveGame} size={width as number < 400 ? "sm" : "md"}>Leave</Button>
+          <Button type="submit" colorScheme='linkedin' size={width as number < 400 ? "sm" : "md"}>Guess</Button>
         </HStack>
       </VStack>
     </Box>

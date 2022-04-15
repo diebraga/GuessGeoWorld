@@ -120,7 +120,7 @@ const WorldCountriesMap = () => {
         onRestart={onRestartGame}
       />
 
-      <Box pl="3" pr="3" pt="3" mt="2">
+      <Box pl="3" pr="3" pt="0" mt="2">
         <Wrap overflowY='scroll' overflowX='hidden' h="80px">
           {foundCountries.map(country => <FoundWorldCountriesList
             key={country.id}

@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { createContext, ReactNode } from 'react'
 import { useRef } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface SoundProviderProp {
   children: ReactNode
@@ -11,6 +13,8 @@ interface SoundContextProps {
   soundSuccessRef: any
   startFinishedSound: () => void
   pauseFinishedSound: () => void
+  setSoundVolume: (value: number | ((val: number) => number)) => void
+  soundVolume: number
 }
 
 export const SoundContext = createContext({} as SoundContextProps)
@@ -18,11 +22,12 @@ export const SoundContext = createContext({} as SoundContextProps)
 export function SoundProvider({ children }: SoundProviderProp) {
   const soundSuccessRef = useRef(null)
   const soundFinishedRef = useRef(null)
+  const [soundVolume, setSoundVolume] = useLocalStorage("soundVolume", 0.2)
 
   function startSuccessSound() {
     soundSuccessRef.current?.play()
     // som 20%
-    soundSuccessRef.current.volume = 0.2
+    soundSuccessRef.current.volume = soundVolume
   }
 
   function pauseSuccessSound() {
@@ -32,7 +37,7 @@ export function SoundProvider({ children }: SoundProviderProp) {
   function startFinishedSound() {
     soundFinishedRef.current?.play()
     // som 20%
-    soundFinishedRef.current.volume = 0.2
+    soundFinishedRef.current.volume = soundVolume
   }
 
   function pauseFinishedSound() {
@@ -45,7 +50,9 @@ export function SoundProvider({ children }: SoundProviderProp) {
       pauseSuccessSound,
       soundSuccessRef,
       pauseFinishedSound,
-      startFinishedSound
+      startFinishedSound,
+      setSoundVolume,
+      soundVolume
     }}>
       <audio
         ref={soundSuccessRef}
