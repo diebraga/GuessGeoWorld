@@ -6,37 +6,55 @@ interface SoundProviderProp {
 }
 
 interface SoundContextProps {
-  startSound: () => void
-  pauseSound: () => void
-  soundRef: any
+  startSuccessSound: () => void
+  pauseSuccessSound: () => void
+  soundSuccessRef: any
+  startFinishedSound: () => void
+  pauseFinishedSound: () => void
 }
 
 export const SoundContext = createContext({} as SoundContextProps)
 
 export function SoundProvider({ children }: SoundProviderProp) {
-  const soundRef = useRef(null)
+  const soundSuccessRef = useRef(null)
+  const soundFinishedRef = useRef(null)
 
-  function startSound() {
-    soundRef.current?.play()
+  function startSuccessSound() {
+    soundSuccessRef.current?.play()
     // som 20%
-    soundRef.current.volume = 0.2
+    soundSuccessRef.current.volume = 0.2
   }
 
-  function pauseSound() {
-    soundRef.current?.pause()
+  function pauseSuccessSound() {
+    soundSuccessRef.current?.pause()
+  }
+
+  function startFinishedSound() {
+    soundFinishedRef.current?.play()
+    // som 20%
+    soundFinishedRef.current.volume = 0.2
+  }
+
+  function pauseFinishedSound() {
+    soundFinishedRef.current?.pause()
   }
 
   return (
     <SoundContext.Provider value={{
-      startSound,
-      pauseSound,
-      soundRef,
+      startSuccessSound,
+      pauseSuccessSound,
+      soundSuccessRef,
+      pauseFinishedSound,
+      startFinishedSound
     }}>
       <audio
-        ref={soundRef}
+        ref={soundSuccessRef}
         src="/sounds/success-notification.wav"
       />
-
+      <audio
+        ref={soundFinishedRef}
+        src="/sounds/finished-game.wav"
+      />
       {children}
     </SoundContext.Provider>
   )
