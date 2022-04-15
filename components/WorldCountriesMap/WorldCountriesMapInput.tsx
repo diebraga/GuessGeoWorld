@@ -7,10 +7,10 @@ type WorldCountriesMapInputProps = {
   country: string
   setCountry: Dispatch<SetStateAction<string>>
   onLeaveGame: () => void
-  isInvalid: boolean
+  invalidFeedback: string
 }
 
-export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeaveGame, isInvalid }: WorldCountriesMapInputProps) {
+export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeaveGame, invalidFeedback }: WorldCountriesMapInputProps) {
   const { width } = useWindowSize()
 
   return (
@@ -23,9 +23,9 @@ export function WorldCountriesMapInput({ addCountry, country, setCountry, onLeav
           onChange={e => setCountry(e.target.value)}
           value={country}
           textAlign="center"
-          isInvalid={isInvalid}
+          isInvalid={invalidFeedback.length > 0}
         />
-        {isInvalid && <Text fontSize='xs' color={useColorModeValue("red.500", "red.400")}>country not found</Text>}
+        {invalidFeedback.length > 0 && <Text fontSize='xs' color={useColorModeValue("red.500", "red.400")}>{invalidFeedback}</Text>}
         <HStack spacing='1'>
           <Button type="button" colorScheme="red" onClick={onLeaveGame} size={width as number < 400 ? "sm" : "md"}>Leave</Button>
           <Button type="submit" colorScheme='linkedin' size={width as number < 400 ? "sm" : "md"}>Guess</Button>

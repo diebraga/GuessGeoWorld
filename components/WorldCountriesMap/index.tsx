@@ -22,7 +22,7 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
-  const [countryIsNotFound, setCountryIsNotFound] = useState(false)
+  const [countryIsNotFound, setCountryIsNotFound] = useState("")
 
   const { startSuccessSound, startFinishedSound } = useSound()
 
@@ -54,13 +54,17 @@ const WorldCountriesMap = () => {
     if (findCountryHelper(country) !== "" && !foundCountries.some(item => item.name === findCountryHelper(country))) {
       setFoundCountries(prev => [...prev, { name: findCountryHelper(country), id: '_' + Math.random().toString(36).substr(2, 9) }])
       setCountry("")
-      setCountryIsNotFound(false)
+      setCountryIsNotFound("")
       startSuccessSound()
       toast({
         position: 'top',
         render: () => <FoundNewCountryToast countryName={findCountryHelper(country)} />
       })
-    } else setCountryIsNotFound(true)
+    } else if (foundCountries.some(item => item.name === findCountryHelper(country))) {
+      setCountryIsNotFound("country was already found")
+    } else {
+      setCountryIsNotFound("country not found")
+    }
   }
 
   function onCloseMapModal() {
@@ -136,7 +140,7 @@ const WorldCountriesMap = () => {
         country={country}
         setCountry={setCountry}
         onLeaveGame={onLeaveGame}
-        isInvalid={countryIsNotFound}
+        invalidFeedback={countryIsNotFound}
       />
 
       <WorldCountriesMapCanvas foundCountries={foundCountries} />
