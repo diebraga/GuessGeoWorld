@@ -30,8 +30,8 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "australia") {
     return "Australia"
   }
-  else if (formattedCountryName === "andora") {
-    return "Andora"
+  else if (formattedCountryName === "andorra") {
+    return "Andorra"
   }
   else if (formattedCountryName === "austria") {
     return "Austria"
@@ -230,6 +230,9 @@ export function findCountryHelper(countryName: string) {
   }
   else if (formattedCountryName === "hungary") {
     return "Hungary"
+  }
+  else if (formattedCountryName === "singapore") {
+    return "Singapore"
   }
   else if (formattedCountryName === "indonesia") {
     return "Indonesia"
