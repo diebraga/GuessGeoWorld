@@ -1,7 +1,7 @@
-import { Box, Text, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
+import { Box, Flex, Link, Text, useColorModeValue, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import { FormEvent, memo, useState } from "react";
+import { memo, useState } from "react";
 import { useSound } from "../../hooks/useSound";
 import { AllCountries } from "../../utils/allCountries";
 import { findCountryHelper } from "../../utils/findCountriesHelper";
@@ -129,13 +129,17 @@ const WorldCountriesMap = () => {
             foundCountries={foundCountries}
           />)}
         </Wrap>
-        <Text mb="3">{foundCountries.length + "/" + AllCountries.length}</Text>
+        <Flex mb="3" justifyContent='space-between'>
+          <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
+          <Link color={useColorModeValue("red.500", "red.400")} onClick={onLeaveGame}>
+            End game
+          </Link>
+        </Flex>
       </Box>
 
       <WorldCountriesMapInput
         country={country}
         setCountry={setCountry}
-        onLeaveGame={onLeaveGame}
       />
 
       <WorldCountriesMapCanvas foundCountries={foundCountries} />
