@@ -22,7 +22,7 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
-  const { startSuccessSound, startFinishedSound } = useSound()
+  const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
   const router = useRouter()
 
@@ -87,6 +87,7 @@ const WorldCountriesMap = () => {
   function onConfirmLeaveGameAlert() {
     leaveGameModalOnOpen()
     leaveGameOnCloseAlert()
+    startFailedSound()
   }
 
   useEffect(() => {

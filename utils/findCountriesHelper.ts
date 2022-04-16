@@ -24,7 +24,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "antarctica") {
     return "Antarctica"
   }
-  else if (formattedCountryName === "Antigua and Barbuda") {
+  else if (formattedCountryName === "antiguaandbarbuda") {
     return "Antigua and Barbuda"
   }
   else if (formattedCountryName === "australia") {
@@ -96,16 +96,16 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "chile") {
     return "Chile"
   }
-  else if (formattedCountryName === "Cameroon") {
+  else if (formattedCountryName === "cameroon") {
     return "Cameroon"
   }
   else if (formattedCountryName === "china") {
     return "China"
   }
-  else if (formattedCountryName === "côted'ivoire" || formattedCountryName === "coted'ivoire") {
+  else if (formattedCountryName === "côted'ivoire" || formattedCountryName === "coted'ivoire" || formattedCountryName === "ivorycoast") {
     return "Côte d'Ivoire"
   }
-  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo") {
+  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo" || formattedCountryName === "drc") {
     return "Dem. Rep. Congo"
   }
   else if (formattedCountryName === "congo") {
@@ -198,7 +198,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "guinea-bissau" || formattedCountryName === "guineabissau") {
     return "Guinea-Bissau"
   }
-  else if (formattedCountryName === "eq.guinea" || formattedCountryName === "equatorialguinea") {
+  else if (formattedCountryName === "eq.guinea" || formattedCountryName === "equatorialguinea" || formattedCountryName === "eqguinea") {
     return "Eq. Guinea"
   }
   else if (formattedCountryName === "grenada") {
@@ -360,13 +360,13 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "Comoros") {
     return "Comoros"
   }
-  else if (formattedCountryName === "caboverde") {
+  else if (formattedCountryName === "caboverde" || formattedCountryName === "capeverde") {
     return "Cabo Verde"
   }
   else if (formattedCountryName === "kiribati") {
     return "Kiribati"
   }
-  else if (formattedCountryName === "Micronesia") {
+  else if (formattedCountryName === "micronesia") {
     return "Micronesia"
   }
   else if (formattedCountryName === "malawi") {
@@ -426,6 +426,9 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "pakistan") {
     return "Pakistan"
   }
+  else if (formattedCountryName === "tanzania") {
+    return "Tanzania"
+  }
   else if (formattedCountryName === "panama") {
     return "Panama"
   }
@@ -477,10 +480,10 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "samoa") {
     return "Samoa"
   }
-  else if (formattedCountryName === "saintkittsandnevis") {
+  else if (formattedCountryName === "saintkittsandnevis" || formattedCountryName === "stkittsandnevis") {
     return "Saint Kitts and Nevis"
   }
-  else if (formattedCountryName === "saintlucia") {
+  else if (formattedCountryName === "saintlucia" || formattedCountryName === "stlucia") {
     return "Saint Lucia"
   }
   else if (formattedCountryName === "saotome&principe" || formattedCountryName === "saotomeandprincipe") {
@@ -540,7 +543,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "turkmenistan") {
     return "Turkmenistan"
   }
-  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste") {
+  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste" || formattedCountryName === "easttimor") {
     return "Timor-leste"
   }
   else if (formattedCountryName === "trinidadandtobago") {

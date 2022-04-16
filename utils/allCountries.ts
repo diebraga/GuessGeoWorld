@@ -77,6 +77,7 @@ export const AllCountries = [
   { name: "Haiti" },
   { name: "Iran" },
   { name: "Hungary" },
+  { name: "Tanzania" },
   { name: "Indonesia" },
   { name: "India" },
   { name: "Ireland" },

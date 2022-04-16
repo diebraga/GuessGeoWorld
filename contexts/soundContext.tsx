@@ -13,6 +13,8 @@ interface SoundContextProps {
   soundSuccessRef: any
   startFinishedSound: () => void
   pauseFinishedSound: () => void
+  startFailedSound: () => void
+  pauseFailedSound: () => void
   setSoundVolume: (value: number | ((val: number) => number)) => void
   soundVolume: number
 }
@@ -22,6 +24,8 @@ export const SoundContext = createContext({} as SoundContextProps)
 export function SoundProvider({ children }: SoundProviderProp) {
   const soundSuccessRef = useRef(null)
   const soundFinishedRef = useRef(null)
+  const soundFailedRef = useRef(null)
+
   const [soundVolume, setSoundVolume] = useLocalStorage("soundVolume", 0.2)
 
   function startSuccessSound() {
@@ -44,6 +48,16 @@ export function SoundProvider({ children }: SoundProviderProp) {
     soundFinishedRef.current?.pause()
   }
 
+  function startFailedSound() {
+    soundFailedRef.current?.play()
+    // som 20%
+    soundFailedRef.current.volume = soundVolume
+  }
+
+  function pauseFailedSound() {
+    soundFailedRef.current?.pause()
+  }
+
   return (
     <SoundContext.Provider value={{
       startSuccessSound,
@@ -52,7 +66,9 @@ export function SoundProvider({ children }: SoundProviderProp) {
       pauseFinishedSound,
       startFinishedSound,
       setSoundVolume,
-      soundVolume
+      soundVolume,
+      pauseFailedSound,
+      startFailedSound
     }}>
       <audio
         ref={soundSuccessRef}
@@ -61,6 +77,10 @@ export function SoundProvider({ children }: SoundProviderProp) {
       <audio
         ref={soundFinishedRef}
         src="/sounds/finished-game.wav"
+      />
+      <audio
+        ref={soundFailedRef}
+        src="/sounds/fail-game.mp3"
       />
       {children}
     </SoundContext.Provider>
