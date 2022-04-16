@@ -22,8 +22,6 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
-  const [countryIsNotFound, setCountryIsNotFound] = useState("")
-
   const { startSuccessSound, startFinishedSound } = useSound()
 
   const router = useRouter()
@@ -49,23 +47,21 @@ const WorldCountriesMap = () => {
 
   const cancelRef = useRef()
 
-  function addCountry(e: FormEvent) {
-    e.preventDefault()
+  function addCountry() {
     if (findCountryHelper(country) !== "" && !foundCountries.some(item => item.name === findCountryHelper(country))) {
       setFoundCountries(prev => [...prev, { name: findCountryHelper(country), id: '_' + Math.random().toString(36).substr(2, 9) }])
       setCountry("")
-      setCountryIsNotFound("")
       startSuccessSound()
       toast({
         position: 'top',
         render: () => <FoundNewCountryToast countryName={findCountryHelper(country)} />
       })
-    } else if (foundCountries.some(item => item.name === findCountryHelper(country))) {
-      setCountryIsNotFound("country was already found")
-    } else {
-      setCountryIsNotFound("country not found")
     }
   }
+
+  useEffect(() => {
+    addCountry()
+  }, [country])
 
   function onCloseMapModal() {
     completedCountriesModalOnClose()
@@ -136,11 +132,9 @@ const WorldCountriesMap = () => {
       </Box>
 
       <WorldCountriesMapInput
-        addCountry={addCountry}
         country={country}
         setCountry={setCountry}
         onLeaveGame={onLeaveGame}
-        invalidFeedback={countryIsNotFound}
       />
 
       <WorldCountriesMapCanvas foundCountries={foundCountries} />

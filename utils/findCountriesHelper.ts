@@ -189,7 +189,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "guinea") {
     return "Guinea"
   }
-  else if (formattedCountryName === "unitedkingdom" || formattedCountryName === "greatbritain") {
+  else if (formattedCountryName === "unitedkingdom" || formattedCountryName === "greatbritain" || formattedCountryName === "uk") {
     return "United Kingdom"
   }
   else if (formattedCountryName === "gambia") {
