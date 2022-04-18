@@ -1,4 +1,4 @@
-import { Box, Flex, Link, Text, useColorModeValue, useDisclosure, useToast, Wrap } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text, useColorModeValue, useDisclosure, useToast, VStack, Wrap } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { memo, useState } from "react";
@@ -12,6 +12,9 @@ import { LeaveWorldCountriesGameAlert } from "./LeaveWorldCountriesGameAlert";
 import { ModalMissedCountries } from "./ModalMissedCountries";
 import { WorldCountriesMapCanvas } from "./WorldCountriesMapCanvas";
 import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { convertSecoundsToMmSs } from "../../utils/convertSecoundsToMmSs";
+import { useCounter } from "../../hooks/useCounter";
 
 type FoundCountries = {
   name: string
@@ -22,6 +25,17 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
+  const secondsTimer = 1200
+
+  const {
+    currentSeconds,
+    startCountSeconds,
+    stopCountSeconds,
+    timeIsRunning,
+    clearCountSeconds
+  } = useCounter(secondsTimer)
+
+  console.log(currentSeconds)
   const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
   const router = useRouter()
@@ -131,6 +145,28 @@ const WorldCountriesMap = () => {
         </Wrap>
         <Flex mb="3" justifyContent='space-between'>
           <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
+          <CountdownCircleTimer
+            isPlaying={timeIsRunning}
+            duration={secondsTimer}
+            colors={['#004777', "#74a5f2", '#F7B801', '#A30000']}
+            colorsTime={[1200, 900, 600, 0]}
+            size={90}
+            strokeWidth={6}
+          >
+            {({ remainingTime }) => {
+              return (
+                <VStack>
+                  <Text
+                    as='span'
+                    fontWeight='bold'
+                    fontSize={["md", "large", "xl"]}
+                  >
+                    {convertSecoundsToMmSs(remainingTime)}
+                  </Text>
+                </VStack>
+              )
+            }}
+          </CountdownCircleTimer>
           <Link color={useColorModeValue("red.500", "red.400")} onClick={onLeaveGame}>
             End game
           </Link>
