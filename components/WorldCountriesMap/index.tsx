@@ -15,6 +15,8 @@ import { WorldCountriesMapInput } from "./WorldCountriesMapInput";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { convertSecoundsToMmSs } from "../../utils/convertSecoundsToMmSs";
 import { useCounter } from "../../hooks/useCounter";
+import { HelpCountriesWorldModal } from "./HelpCountriesWorldModal";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 type FoundCountries = {
   name: string
@@ -25,6 +27,7 @@ const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
   const [countDowKey, setCountDowKey] = useState(0)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
+  const [modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen] = useLocalStorage("modalHelpWorldCountriesWllNotOpen", false)
 
   const secondsTimer = 1200
 
@@ -39,8 +42,12 @@ const WorldCountriesMap = () => {
   const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
   useEffect(() => {
-    startCountSeconds()
-  }, [])
+    if (!modalHelpWorldCountriesWllNotOpen) {
+      modalHelpOnOpen()
+    } else {
+      startCountSeconds()
+    }
+  }, [modalHelpWorldCountriesWllNotOpen])
 
   const router = useRouter()
 
@@ -63,7 +70,18 @@ const WorldCountriesMap = () => {
     onClose: leaveGameModalOnClose
   } = useDisclosure()
 
+  const {
+    isOpen: modalHelpIsOpen,
+    onOpen: modalHelpOnOpen,
+    onClose: modalHelpOnClose
+  } = useDisclosure()
+
   const cancelRef = useRef()
+
+  function closeModalHelp() {
+    modalHelpOnClose()
+    startCountSeconds()
+  }
 
   function addCountry() {
     if (findCountryHelper(country) !== "" && !foundCountries.some(item => item.name === findCountryHelper(country))) {
@@ -123,6 +141,12 @@ const WorldCountriesMap = () => {
 
   return (
     <Box display='block' overflowY='scroll'>
+      <HelpCountriesWorldModal
+        onClose={closeModalHelp}
+        isOpen={modalHelpIsOpen}
+        setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}
+      />
+
       <ModalMissedCountries
         isOpen={leaveGameModalIsOpen}
         onClose={onConfirmLeaveGame}
