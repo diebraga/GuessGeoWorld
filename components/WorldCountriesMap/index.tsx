@@ -23,6 +23,7 @@ type FoundCountries = {
 
 const WorldCountriesMap = () => {
   const [country, setCountry] = useState('')
+  const [countDowKey, setCountDowKey] = useState(0)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
 
   const secondsTimer = 1200
@@ -35,8 +36,11 @@ const WorldCountriesMap = () => {
     clearCountSeconds
   } = useCounter(secondsTimer)
 
-  console.log(currentSeconds)
   const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
+
+  useEffect(() => {
+    startCountSeconds()
+  }, [])
 
   const router = useRouter()
 
@@ -85,6 +89,9 @@ const WorldCountriesMap = () => {
   function onRestartGame() {
     completedCountriesModalOnClose()
     leaveGameModalOnClose()
+    clearCountSeconds()
+    startCountSeconds()
+    setCountDowKey(prevKey => prevKey + 1)
     setFoundCountries([])
   }
 
@@ -108,6 +115,7 @@ const WorldCountriesMap = () => {
     if (foundCountries.length === AllCountries.length) {
       completedCountriesModalOnOpen()
       startFinishedSound()
+      stopCountSeconds()
     }
   }, [foundCountries])
 
@@ -146,12 +154,14 @@ const WorldCountriesMap = () => {
         <Flex mb="3" justifyContent='space-between'>
           <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
           <CountdownCircleTimer
+            key={countDowKey}
             isPlaying={timeIsRunning}
             duration={secondsTimer}
             colors={['#004777', "#74a5f2", '#F7B801', '#A30000']}
             colorsTime={[1200, 900, 600, 0]}
             size={90}
             strokeWidth={6}
+            onComplete={() => onConfirmLeaveGameAlert()}
           >
             {({ remainingTime }) => {
               return (
