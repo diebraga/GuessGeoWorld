@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link, Text, useColorModeValue, useDisclosure, useToast, VStack, Wrap } from "@chakra-ui/react";
+import { Box, IconButton, Flex, Link, Text, useColorModeValue, useDisclosure, useToast, VStack, Wrap, Icon } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { memo, useState } from "react";
@@ -17,7 +17,7 @@ import { convertSecoundsToMmSs } from "../../utils/convertSecoundsToMmSs";
 import { useCounter } from "../../hooks/useCounter";
 import { HelpCountriesWorldModal } from "./HelpCountriesWorldModal";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-
+import { IoMdHelp } from 'react-icons/io'
 type FoundCountries = {
   name: string
   id: string
@@ -141,10 +141,18 @@ const WorldCountriesMap = () => {
 
   return (
     <Box display='block' overflowY='scroll'>
+      <Box pl='2.5' mt='1.5'>
+        <IconButton
+          onClick={modalHelpOnOpen}
+          aria-label='Open help'
+          icon={<Icon as={IoMdHelp} />}
+        />
+      </Box>
       <HelpCountriesWorldModal
         onClose={closeModalHelp}
         isOpen={modalHelpIsOpen}
         setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}
+        modalHelpWorldCountriesWllNotOpen={modalHelpWorldCountriesWllNotOpen}
       />
 
       <ModalMissedCountries

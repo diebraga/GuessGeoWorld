@@ -17,10 +17,11 @@ import { useWindowSize } from '../../hooks/useWindowSize';
 type HelpCountriesWorldModalProps = {
   isOpen: boolean
   onClose: () => void
+  modalHelpWorldCountriesWllNotOpen: boolean
   setModalHelpWorldCountriesWllNotOpen: (value: boolean | ((val: boolean) => boolean)) => void
 }
 
-export function HelpCountriesWorldModal({ isOpen, onClose, setModalHelpWorldCountriesWllNotOpen }: HelpCountriesWorldModalProps) {
+export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen }: HelpCountriesWorldModalProps) {
   const { width } = useWindowSize()
 
   return (
@@ -39,7 +40,7 @@ export function HelpCountriesWorldModal({ isOpen, onClose, setModalHelpWorldCoun
           </Text>
         </ModalBody>
         <ModalFooter justifyContent='space-between'>
-          <Checkbox size={'sm'} onChange={(e) => setModalHelpWorldCountriesWllNotOpen(e.target.checked)}>
+          <Checkbox size={'sm'} onChange={(e) => setModalHelpWorldCountriesWllNotOpen(e.target.checked)} isChecked={modalHelpWorldCountriesWllNotOpen}>
             Don't show me again
           </Checkbox>
           <Button
