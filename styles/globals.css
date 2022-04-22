@@ -14,3 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
+.container-carousel-item {
+  position: relative;
+  height: 400px;
+}
+
+.centered-element-carousel {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,23 +1,37 @@
-import { Badge, Box, Center, Image } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import Carousel from 'react-multi-carousel';
+import { AllCountries } from '../../utils/allCountries';
 import { WorldFlagCard } from './WorldFlagCard';
 
+type AllCountryFlagsTypes = {
+  name: string
+  code: string
+}
 
-export function WorldFlagsCarousel() {
+type WorldFlagsCarouselProps = {
+  allFlags: AllCountryFlagsTypes[]
+  allFlagsIndex: number
+  setAllFlagsIndex: Dispatch<SetStateAction<number>>
+  setCountryFlagInput: Dispatch<SetStateAction<string>>
+}
+
+export function WorldFlagsCarousel({ allFlags, allFlagsIndex, setAllFlagsIndex, setCountryFlagInput }: WorldFlagsCarouselProps) {
   return (
     <Box pl='3' pr='3'>
       <Carousel
         additionalTransfrom={0}
         arrows
-        autoPlaySpeed={10000}
+        autoPlaySpeed={100000}
         centerMode={false}
         className=""
-        containerClass="container-with-dots"
+        containerClass=""
         dotListClass=""
         draggable
         focusOnSelect={false}
-        infinite
-        itemClass=""
+        // infinite
+        itemClass="container-carousel-item"
         keyBoardControl
         minimumTouchDrag={80}
         renderButtonGroupOutside={false}
@@ -48,17 +62,11 @@ export function WorldFlagsCarousel() {
         sliderClass=""
         slidesToSlide={1}
         swipeable
+        afterChange={(previousSlide, { currentSlide }) => {
+          setAllFlagsIndex(currentSlide)
+        }}
       >
-        <WorldFlagCard
-          code='nor'
-        />
-        <WorldFlagCard
-          code='br'
-        />
-        <WorldFlagCard
-          code='ar'
-        />
-
+        {allFlags.map((flag) => <WorldFlagCard code={flag.code} key={flag.code} setCountryFlagInput={setCountryFlagInput} />)}
       </Carousel>
     </Box>
   )
