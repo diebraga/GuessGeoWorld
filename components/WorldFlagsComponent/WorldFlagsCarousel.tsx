@@ -14,9 +14,12 @@ type WorldFlagsCarouselProps = {
   allFlags: AllCountryFlagsTypes[]
   setAllFlagsIndex: Dispatch<SetStateAction<number>>
   carouselRef: MutableRefObject<any>
+  setCountryFlagInput: Dispatch<SetStateAction<string>>
+  countryFlagInput: string
+  isDisabled: boolean
 }
 
-export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef }: WorldFlagsCarouselProps) {
+export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef, setCountryFlagInput, countryFlagInput, isDisabled }: WorldFlagsCarouselProps) {
   return (
     <Box pl='3' pr='3'>
       <Carousel
@@ -66,7 +69,14 @@ export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef }: 
           setAllFlagsIndex(currentSlide)
         }}
       >
-        {allFlags.map((flag) => <WorldFlagCard code={flag.code} key={flag.code} currentFlagWasFound={flag.found} name={flag.name} />)}
+        {allFlags.map((flag) => <WorldFlagCard
+          isDisabled={isDisabled}
+          setCountryFlagInput={setCountryFlagInput}
+          countryFlagInput={countryFlagInput}
+          code={flag.code}
+          key={flag.code}
+          currentFlagWasFound={flag.found}
+          name={flag.name} />)}
       </Carousel>
     </Box>
   )

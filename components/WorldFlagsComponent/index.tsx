@@ -1,4 +1,4 @@
-import { Box, Input } from "@chakra-ui/react";
+import { Box, Heading, Input } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";
@@ -21,10 +21,12 @@ export function WorldFlagsComponent() {
 
   const currentFlag = allCountriesFlags[allFlagsIndex]
 
-  console.log(currentFlag)
+  const updatedCurrentFlag = AllCountriesFlags.find(flag => flag.code === currentFlag.code)
+
+  console.log(updatedCurrentFlag)
   console.log(AllCountriesFlags)
 
-  function removeFlagFromArray() {
+  function findCountryFlag() {
     if (countryFlagInput === currentFlag.code) {
       setAllCountriesFlags(
         (data) => {
@@ -46,19 +48,19 @@ export function WorldFlagsComponent() {
   }
 
   useEffect(() => {
-    removeFlagFromArray()
+    findCountryFlag()
   }, [countryFlagInput])
 
   return (
     <Box pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
-      <Box p='2'>
-        <Input
-          onChange={e => setCountryFlagInput(e.target.value)}
-          value={countryFlagInput}
-          textAlign='center' />
-      </Box>
+      <Heading mb='1' textAlign='center' as="h1" mt="10%">
+        Name this country
+      </Heading>
 
       <WorldFlagsCarousel
+        countryFlagInput={countryFlagInput}
+        setCountryFlagInput={setCountryFlagInput}
+        isDisabled={updatedCurrentFlag.found}
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
