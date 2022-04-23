@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { MutableRefObject } from 'react';
 import { Dispatch, SetStateAction } from 'react';
 import Carousel from 'react-multi-carousel';
+import { useMainMenu } from '../../hooks/useMainMenu';
 import { WorldFlagCard } from './WorldFlagCard';
 
 type AllCountryFlagsTypes = {
@@ -20,11 +21,13 @@ type WorldFlagsCarouselProps = {
 }
 
 export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef, setCountryFlagInput, countryFlagInput, isDisabled }: WorldFlagsCarouselProps) {
+  const { menuIsOpen } = useMainMenu()
+
   return (
     <Box pl='3' pr='3'>
       <Carousel
         additionalTransfrom={0}
-        arrows
+        arrows={!menuIsOpen}
         autoPlaySpeed={100000}
         ref={carouselRef}
         centerMode={false}

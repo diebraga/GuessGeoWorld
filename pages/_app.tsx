@@ -5,15 +5,18 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '../styles/theme'
 import { SoundProvider } from '../contexts/soundContext'
 import { Header } from '../components/Header'
+import { MainMenuProvider } from '../contexts/mainMenuContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <SoundProvider>
-        <Header />
-        {/* @ts-ignore */}
-        <Component {...pageProps} />
-      </SoundProvider>
+      <MainMenuProvider>
+        <SoundProvider>
+          <Header />
+          {/* @ts-ignore */}
+          <Component {...pageProps} />
+        </SoundProvider>
+      </MainMenuProvider>
     </ChakraProvider>
   )
 }

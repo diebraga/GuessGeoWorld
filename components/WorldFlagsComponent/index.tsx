@@ -1,4 +1,4 @@
-import { Box, Heading, Input } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";

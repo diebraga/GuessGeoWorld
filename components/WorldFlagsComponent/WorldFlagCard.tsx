@@ -16,7 +16,7 @@ export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, set
     <Box position='relative' className='centered-element-carousel' h='99%'>
       <Box textAlign='center' mx='2' my='2'>
         {currentFlagWasFound === true && (
-          <Heading as='h2'>
+          <Heading as='h2' fontSize='x-large'>
             {name}
           </Heading>
         )}

@@ -16,10 +16,11 @@ import Link from 'next/link'
 import { AiFillHome, AiFillSound } from 'react-icons/ai'
 import { GoMute, GoUnmute } from 'react-icons/go'
 import { RiMoonFill, RiSunLine } from "react-icons/ri";
+import { useMainMenu } from '../../hooks/useMainMenu'
 import { useSound } from '../../hooks/useSound';
 
 export function Header() {
-  const { isOpen, onToggle } = useDisclosure()
+  const { menuIsOpen, onToggleMenu } = useMainMenu()
 
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -36,9 +37,9 @@ export function Header() {
   return (
     <Box>
       <Box position="sticky" style={{ zIndex: 20 }} pl="1.5" pt="0.5">
-        <Hamburger toggled={isOpen} toggle={onToggle} />
+        <Hamburger toggled={menuIsOpen} toggle={onToggleMenu} />
       </Box>
-      <Slide direction='left' in={isOpen} style={{ zIndex: 10 }}>
+      <Slide direction='left' in={menuIsOpen} style={{ zIndex: 10 }}>
         <VStack
           p='40px'
           bg={useColorModeValue('white', 'gray.700')}
@@ -47,7 +48,7 @@ export function Header() {
         >
           <VStack spacing='6' mt="60px">
             <Link href='/'>
-              <Heading as={ChakraLink} textAlign='center' onClick={onToggle}>
+              <Heading as={ChakraLink} textAlign='center' onClick={onToggleMenu}>
                 <HStack>
                   <Text as='span'>Home</Text> <Icon as={AiFillHome} />
                 </HStack>
