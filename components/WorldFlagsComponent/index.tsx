@@ -1,4 +1,4 @@
-import { Box, Heading, useToast } from "@chakra-ui/react";
+import { Box, Heading, Input, useDisclosure, useToast } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { useSound } from "../../hooks/useSound";
 import { FoundNewFlagToast } from "./FoundNewFlagToast";
 import { findCountryFlagHelper } from "../../utils/findCountryFlagHelper";
+import { FoundAllFlagsModal } from "./FoundAllFlagsModal";
+import { useRouter } from "next/router";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -20,11 +22,13 @@ export function WorldFlagsComponent() {
 
   const [countryFlagInput, setCountryFlagInput] = useState("")
 
+  const router = useRouter()
+
   const carouselRef = useRef(null)
 
   const toast = useToast()
 
-  const { startSuccessSound } = useSound()
+  const { startSuccessSound, startFinishedSound } = useSound()
 
   const [allFlagsIndex, setAllFlagsIndex] = useState(0)
 
@@ -72,12 +76,36 @@ export function WorldFlagsComponent() {
     }
   }
 
+  const {
+    isOpen: completedFlagsModalIsOpen,
+    onOpen: completedFlagsModalOnOpen,
+    onClose: completedFlagsModalOnClose
+  } = useDisclosure()
+
+  function onRestartNewGame() {
+    completedFlagsModalOnClose()
+    setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5))
+    carouselRef.current.goToSlide(0)
+  }
+
+  useEffect(() => {
+    if (notFoundFlagsLenght === 0) {
+      completedFlagsModalOnOpen()
+      startFinishedSound()
+    }
+  }, [notFoundFlagsLenght])
+
   useEffect(() => {
     findCountryFlag()
   }, [countryFlagInput])
 
   return (
     <Box pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
+      <FoundAllFlagsModal
+        onClose={() => router.push('/')}
+        onRestart={onRestartNewGame}
+        isOpen={completedFlagsModalIsOpen}
+      />
       <Heading mb='1' textAlign='center' as="h1" mt="10%">
         Name this country
       </Heading>
@@ -91,6 +119,7 @@ export function WorldFlagsComponent() {
         carouselRef={carouselRef}
         flagIndex={allFlagsIndex}
         onLeave={() => alert('leave')}
+        flagFound={updatedCurrentFlag.found}
       />
     </Box>
   )

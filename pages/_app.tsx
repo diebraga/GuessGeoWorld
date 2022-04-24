@@ -4,10 +4,12 @@ import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '../styles/theme'
 import { SoundProvider } from '../contexts/soundContext'
-import { Header } from '../components/Header'
 import { MainMenuProvider } from '../contexts/mainMenuContext';
+import dynamic from 'next/dynamic';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const Header = dynamic(() => import('../components/Header'))
+
   return (
     <ChakraProvider theme={theme}>
       <MainMenuProvider>

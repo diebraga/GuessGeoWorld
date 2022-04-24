@@ -21,6 +21,7 @@ type WorldFlagsCarouselProps = {
   isDisabled: boolean
   flagIndex: number
   onLeave: () => void
+  flagFound: boolean
 }
 
 export function WorldFlagsCarousel({
@@ -31,7 +32,8 @@ export function WorldFlagsCarousel({
   setCountryFlagInput,
   countryFlagInput,
   isDisabled,
-  flagIndex
+  flagIndex,
+  flagFound
 }: WorldFlagsCarouselProps) {
   const { menuIsOpen } = useMainMenu()
 
@@ -52,7 +54,7 @@ export function WorldFlagsCarousel({
         focusOnSelect={false}
         // infinite
         itemClass="container-carousel-item"
-        keyBoardControl
+        keyBoardControl={false}
         minimumTouchDrag={80}
         renderButtonGroupOutside={false}
         renderDotsOutside={false}
@@ -100,6 +102,7 @@ export function WorldFlagsCarousel({
         foundLenght={foundFlagsLenght}
         currentFlagNumber={flagIndex + 1}
         onLeave={onLeave}
+        flagFound={flagFound}
       />
     </Box>
   )

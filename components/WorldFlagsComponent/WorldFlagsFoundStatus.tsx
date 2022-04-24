@@ -1,4 +1,4 @@
-import { Button, Stat, StatGroup, StatLabel, StatNumber, Text } from "@chakra-ui/react";
+import { Badge, Button, Stat, StatGroup, StatLabel, StatNumber, Text } from "@chakra-ui/react";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
 type WorldFlagsFoundStatusProps = {
@@ -6,9 +6,10 @@ type WorldFlagsFoundStatusProps = {
   totalLenght: number
   currentFlagNumber: number
   onLeave: () => void
+  flagFound: boolean
 }
 
-export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave }: WorldFlagsFoundStatusProps) {
+export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave, flagFound }: WorldFlagsFoundStatusProps) {
   const { width } = useWindowSize()
 
   const isSmallerThan400px = width < 400
@@ -31,14 +32,21 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
         <StatLabel fontSize={isSmallerThan400px ? "sm" : "md"}>Current flag</StatLabel>
         <StatNumber>
           {currentFlagNumber}
+          <Badge variant='outline' colorScheme={flagFound ? "green" : "red"} ml='1.5' size='xsm'>
+            {flagFound ? "Found" : "Not found"}
+          </Badge>
         </StatNumber>
       </Stat>
 
       <Stat size={isSmallerThan400px ? "sm" : "md"}>
         <StatLabel fontSize={isSmallerThan400px ? "sm" : "md"}>Leave game</StatLabel>
-        <Button size='sm' h={isSmallerThan400px ? "26px" : "31px"} colorScheme='red' variant='outline' onClick={onLeave}>
-          Leave
-        </Button>
+        <StatNumber>
+
+          <Button size='sm' h={isSmallerThan400px ? "23px" : "26px"} colorScheme='red' variant='outline' onClick={onLeave} >
+            Leave
+          </Button>
+        </StatNumber>
+
       </Stat>
     </StatGroup>
   )

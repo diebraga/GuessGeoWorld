@@ -13,13 +13,13 @@ import {
 } from '@chakra-ui/react'
 import Hamburger from 'hamburger-react'
 import Link from 'next/link'
-import { AiFillHome, AiFillSound } from 'react-icons/ai'
+import { AiFillHome } from 'react-icons/ai'
 import { GoMute, GoUnmute } from 'react-icons/go'
 import { RiMoonFill, RiSunLine } from "react-icons/ri";
 import { useMainMenu } from '../../hooks/useMainMenu'
 import { useSound } from '../../hooks/useSound';
 
-export function Header() {
+export default function Header() {
   const { menuIsOpen, onToggleMenu } = useMainMenu()
 
   const { colorMode, toggleColorMode } = useColorMode();
