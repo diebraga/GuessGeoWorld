@@ -32,11 +32,22 @@ export function WorldFlagsComponent() {
 
   const updatedCurrentFlag = AllCountriesFlags.find(flag => flag.code === currentFlag.code)
 
+  const notFoundFlagsLenght = AllCountriesFlags.filter(flag => flag.found === false).length
+
+  console.log(notFoundFlagsLenght)
   console.log(updatedCurrentFlag)
-  console.log(AllCountriesFlags)
+
+  const isLastItem = allFlagsIndex + 1 === carouselRef.current?.state.totalItems || 0
 
   function findCountryFlag() {
     if (findCountryFlagHelper(countryFlagInput) === currentFlag.code.toLocaleLowerCase()) {
+      if (notFoundFlagsLenght !== 1) {
+        if (isLastItem) {
+          carouselRef.current.goToSlide(allFlagsIndex - 1)
+        } else {
+          carouselRef.current.goToSlide(allFlagsIndex + 1)
+        }
+      }
       startSuccessSound()
       toast({
         position: 'top',
@@ -78,6 +89,8 @@ export function WorldFlagsComponent() {
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
+        flagIndex={allFlagsIndex}
+        onLeave={() => alert('leave')}
       />
     </Box>
   )
