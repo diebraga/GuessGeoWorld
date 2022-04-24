@@ -360,7 +360,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "mauritius") {
     return "mu"
   }
-  else if (formattedCountryName === "Comoros") {
+  else if (formattedCountryName === "comoros") {
     return "km"
   }
   else if (formattedCountryName === "caboverde" || formattedCountryName === "capeverde") {

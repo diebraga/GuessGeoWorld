@@ -1,9 +1,10 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex, Stat, StatLabel, StatNumber, Text } from '@chakra-ui/react';
 import { MutableRefObject } from 'react';
 import { Dispatch, SetStateAction } from 'react';
 import Carousel from 'react-multi-carousel';
 import { useMainMenu } from '../../hooks/useMainMenu';
 import { WorldFlagCard } from './WorldFlagCard';
+import { WorldFlagsFoundStatus } from './WorldFlagsFoundStatus';
 
 type AllCountryFlagsTypes = {
   name: string
@@ -22,6 +23,8 @@ type WorldFlagsCarouselProps = {
 
 export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef, setCountryFlagInput, countryFlagInput, isDisabled }: WorldFlagsCarouselProps) {
   const { menuIsOpen } = useMainMenu()
+
+  const foundFlagsLenght = allFlags.filter(flag => flag.found === true).length
 
   return (
     <Box pl='3' pr='3'>
@@ -81,6 +84,10 @@ export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef, se
           currentFlagWasFound={flag.found}
           name={flag.name} />)}
       </Carousel>
+      <WorldFlagsFoundStatus
+        totalLenght={allFlags.length}
+        foundLenght={foundFlagsLenght}
+      />
     </Box>
   )
 }

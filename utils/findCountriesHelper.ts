@@ -360,7 +360,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "mauritius") {
     return "Mauritius"
   }
-  else if (formattedCountryName === "Comoros") {
+  else if (formattedCountryName === "comoros") {
     return "Comoros"
   }
   else if (formattedCountryName === "caboverde" || formattedCountryName === "capeverde") {
