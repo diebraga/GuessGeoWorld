@@ -1,4 +1,17 @@
-import { Badge, Button, Stat, StatGroup, StatLabel, StatNumber, Text } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Text,
+  Badge,
+  Button,
+} from '@chakra-ui/react'
 import { useWindowSize } from "../../hooks/useWindowSize";
 
 type WorldFlagsFoundStatusProps = {
@@ -15,39 +28,44 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
   const isSmallerThan400px = width < 400
 
   return (
-    <StatGroup>
-
-      <Stat size={isSmallerThan400px ? "sm" : "md"}>
-        <StatLabel fontSize={isSmallerThan400px ? "sm" : "md"}>Found</StatLabel>
-        <StatNumber>
-          {foundLenght}
-          <Text as='span' fontSize='md' fontWeight='400' mx='1'>
-            of
-          </Text>
-          {totalLenght}
-        </StatNumber>
-      </Stat>
-
-      <Stat size={isSmallerThan400px ? "sm" : "md"}>
-        <StatLabel fontSize={isSmallerThan400px ? "sm" : "md"}>Current flag</StatLabel>
-        <StatNumber>
-          {currentFlagNumber}
-          <Badge variant='outline' colorScheme={flagFound ? "green" : "red"} ml='1.5' size='xsm'>
-            {flagFound ? "Found" : "Not found"}
-          </Badge>
-        </StatNumber>
-      </Stat>
-
-      <Stat size={isSmallerThan400px ? "sm" : "md"}>
-        <StatLabel fontSize={isSmallerThan400px ? "sm" : "md"}>Leave game</StatLabel>
-        <StatNumber>
-
-          <Button size='sm' h={isSmallerThan400px ? "23px" : "26px"} colorScheme='red' variant='outline' onClick={onLeave} >
-            Leave
-          </Button>
-        </StatNumber>
-
-      </Stat>
-    </StatGroup>
+    <TableContainer>
+      <Table variant='unstyled' size='sm'>
+        <Thead>
+          <Tr>
+            <Th>Found</Th>
+            <Th>Current</Th>
+            <Th isNumeric>Leave game</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>
+              <Text as='span' fontSize='x-large' fontWeight='bold'>
+                {foundLenght}
+              </Text>
+              <Text as='span' fontSize='md' fontWeight='400' mx='1'>
+                of
+              </Text>
+              <Text as='span' fontSize='x-large' fontWeight='bold'>
+                {totalLenght}
+              </Text>
+            </Td>
+            <Td>
+              <Text as='span' fontSize='x-large' fontWeight='bold'>
+                {currentFlagNumber}
+              </Text>
+              <Badge variant='outline' colorScheme={flagFound ? "green" : "red"} ml='1.5' size='xsm'>
+                {flagFound ? "Found" : "Not found"}
+              </Badge>
+            </Td>
+            <Td isNumeric>
+              <Button size='sm' h={isSmallerThan400px ? "23px" : "26px"} colorScheme='red' variant='outline' onClick={onLeave} >
+                Leave
+              </Button>
+            </Td>
+          </Tr>
+        </Tbody>
+      </Table>
+    </TableContainer>
   )
 }
