@@ -28,7 +28,7 @@ export function WorldFlagsCarousel({ allFlags, setAllFlagsIndex, carouselRef, se
       <Carousel
         additionalTransfrom={0}
         arrows={!menuIsOpen}
-        autoPlaySpeed={100000}
+        autoPlaySpeed={500000}
         ref={carouselRef}
         centerMode={false}
         className=""

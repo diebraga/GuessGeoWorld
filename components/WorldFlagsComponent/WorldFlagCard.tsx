@@ -22,6 +22,7 @@ export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, set
         )}
         {!currentFlagWasFound && (
           <Input
+            maxLength={30}
             isDisabled={isDisabled}
             onChange={e => setCountryFlagInput(e.target.value)}
             value={countryFlagInput}

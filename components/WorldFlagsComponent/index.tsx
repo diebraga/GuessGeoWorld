@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useSound } from "../../hooks/useSound";
 import { FoundNewFlagToast } from "./FoundNewFlagToast";
+import { findCountryFlagHelper } from "../../utils/findCountryFlagHelper";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -35,7 +36,7 @@ export function WorldFlagsComponent() {
   console.log(AllCountriesFlags)
 
   function findCountryFlag() {
-    if (countryFlagInput === currentFlag.code) {
+    if (findCountryFlagHelper(countryFlagInput) === currentFlag.code.toLocaleLowerCase()) {
       startSuccessSound()
       toast({
         position: 'top',

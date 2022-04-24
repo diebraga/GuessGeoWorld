@@ -1,6 +1,6 @@
 export const allCountriesFlags = [
   { name: "Brazil", code: "br", found: false },
-  { name: "Norway", code: "nor", found: false },
+  { name: "Norway", code: "no", found: false },
   { name: "Argentina", code: "ar", found: false },
   { name: "Andorra", code: "ad", found: false },
   { name: "United Arab Emirates", code: "ae", found: false },
