@@ -8,6 +8,7 @@ import { FoundNewFlagToast } from "./FoundNewFlagToast";
 import { findCountryFlagHelper } from "../../utils/findCountryFlagHelper";
 import { FoundAllFlagsModal } from "./FoundAllFlagsModal";
 import { useRouter } from "next/router";
+import { LeaveCountryFlagsAlert } from "./LeaveCountryFlagsAlert";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -82,6 +83,12 @@ export function WorldFlagsComponent() {
     onClose: completedFlagsModalOnClose
   } = useDisclosure()
 
+  const {
+    isOpen: leaveGameIsOpenAlert,
+    onOpen: leaveGameOnOpenAlert,
+    onClose: leaveGameOnCloseAlert
+  } = useDisclosure()
+
   function onRestartNewGame() {
     completedFlagsModalOnClose()
     setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5))
@@ -99,12 +106,21 @@ export function WorldFlagsComponent() {
     findCountryFlag()
   }, [countryFlagInput])
 
+  const cancelRef = useRef()
+
   return (
     <Box pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
       <FoundAllFlagsModal
         onClose={() => router.push('/')}
         onRestart={onRestartNewGame}
         isOpen={completedFlagsModalIsOpen}
+      />
+
+      <LeaveCountryFlagsAlert
+        isOpen={leaveGameIsOpenAlert}
+        onClose={leaveGameOnCloseAlert}
+        leastDestructiveRef={cancelRef}
+        onConfirm={() => router.push('/')}
       />
       <Heading mb='1' textAlign='center' as="h1" mt="10%">
         Name this country
@@ -118,7 +134,7 @@ export function WorldFlagsComponent() {
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
         flagIndex={allFlagsIndex}
-        onLeave={() => alert('leave')}
+        onLeave={leaveGameOnOpenAlert}
         flagFound={updatedCurrentFlag.found}
       />
     </Box>
