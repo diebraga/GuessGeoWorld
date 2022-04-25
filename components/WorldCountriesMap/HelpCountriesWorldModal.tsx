@@ -19,9 +19,10 @@ type HelpCountriesWorldModalProps = {
   onClose: () => void
   modalHelpWorldCountriesWllNotOpen: boolean
   setModalHelpWorldCountriesWllNotOpen: (value: boolean | ((val: boolean) => boolean)) => void
+  allCountriesLenght: number
 }
 
-export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen }: HelpCountriesWorldModalProps) {
+export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen, allCountriesLenght }: HelpCountriesWorldModalProps) {
   const { width } = useWindowSize()
 
   return (
@@ -34,7 +35,7 @@ export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountri
             <Image src="/images/help-world-country.png" />
           </Box>
           <Text>
-            Your goal is find 199 missing countries in the map. <br />
+            Your goal is find {allCountriesLenght} missing countries in the map. <br />
             You have 20 minutes to complete the task. <br />
             <span style={{ fontWeight: 400 }}>Good luck.🍀</span>
           </Text>

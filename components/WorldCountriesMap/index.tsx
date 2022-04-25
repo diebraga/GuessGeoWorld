@@ -153,6 +153,7 @@ const WorldCountriesMap = () => {
         isOpen={modalHelpIsOpen}
         setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}
         modalHelpWorldCountriesWllNotOpen={modalHelpWorldCountriesWllNotOpen}
+        allCountriesLenght={AllCountries.length}
       />
 
       <ModalMissedCountries

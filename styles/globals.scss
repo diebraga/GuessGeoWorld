@@ -24,4 +24,16 @@ a {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  img {
+    height: 300px;
 }
+}
+
+.img-flag-fail-modal {
+  height: 200px;
+
+  img {
+  }
+}
+

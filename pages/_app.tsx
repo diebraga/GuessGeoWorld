@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import "react-multi-carousel/lib/styles.css";
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'

@@ -6,7 +6,7 @@ export default function WorldCountries() {
     <div>
       <HeadComponent
         title="GuessGeoWorld - World countries"
-        description="GuessGeoWorld World countries game"
+        description="Quiz world countries game"
       />
       <WorldCountriesMap />
     </div>

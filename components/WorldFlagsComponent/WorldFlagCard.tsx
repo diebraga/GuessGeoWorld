@@ -1,4 +1,4 @@
-import { Box, Heading, Input } from "@chakra-ui/react";
+import { Box, Center, Heading, Input } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 import Flag from 'react-world-flags'
 
@@ -29,9 +29,9 @@ export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, set
             textAlign='center' />
         )}
       </Box>
-      <Box>
+      <Center>
         <Flag code={code} />
-      </Box>
+      </Center>
     </Box>
   )
 }

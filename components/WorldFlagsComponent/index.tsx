@@ -9,6 +9,7 @@ import { findCountryFlagHelper } from "../../utils/findCountryFlagHelper";
 import { FoundAllFlagsModal } from "./FoundAllFlagsModal";
 import { useRouter } from "next/router";
 import { LeaveCountryFlagsAlert } from "./LeaveCountryFlagsAlert";
+import { WorldFlagsFailedModal } from "./WorldFlagsFailedModal";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -29,7 +30,7 @@ export function WorldFlagsComponent() {
 
   const toast = useToast()
 
-  const { startSuccessSound, startFinishedSound } = useSound()
+  const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
   const [allFlagsIndex, setAllFlagsIndex] = useState(0)
 
@@ -38,6 +39,8 @@ export function WorldFlagsComponent() {
   const updatedCurrentFlag = AllCountriesFlags.find(flag => flag.code === currentFlag.code)
 
   const notFoundFlagsLenght = AllCountriesFlags.filter(flag => flag.found === false).length
+
+  const notFoundFlags = AllCountriesFlags.filter(flag => flag.found === false)
 
   console.log(notFoundFlagsLenght)
   console.log(updatedCurrentFlag)
@@ -89,10 +92,23 @@ export function WorldFlagsComponent() {
     onClose: leaveGameOnCloseAlert
   } = useDisclosure()
 
-  function onRestartNewGame() {
+  const {
+    isOpen: failFlagsModalIsOpen,
+    onOpen: failFlagsModalOnOpen,
+    onClose: failFlagsModalOnClose
+  } = useDisclosure()
+
+  function onRestartNewGame(): void {
     completedFlagsModalOnClose()
     setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5))
     carouselRef.current.goToSlide(0)
+    failFlagsModalOnClose()
+  }
+
+  function confirmAlertLeaveGame(): void {
+    leaveGameOnCloseAlert()
+    failFlagsModalOnOpen()
+    startFailedSound()
   }
 
   useEffect(() => {
@@ -120,8 +136,16 @@ export function WorldFlagsComponent() {
         isOpen={leaveGameIsOpenAlert}
         onClose={leaveGameOnCloseAlert}
         leastDestructiveRef={cancelRef}
-        onConfirm={() => router.push('/')}
+        onConfirm={confirmAlertLeaveGame}
       />
+
+      <WorldFlagsFailedModal
+        onClose={() => router.push('/')}
+        isOpen={failFlagsModalIsOpen}
+        onRestart={onRestartNewGame}
+        flagsNotFound={notFoundFlags}
+      />
+
       <Heading mb='1' textAlign='center' as="h1" mt="10%">
         Name this country
       </Heading>
