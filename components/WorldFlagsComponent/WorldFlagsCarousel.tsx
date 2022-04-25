@@ -19,25 +19,17 @@ type WorldFlagsCarouselProps = {
   setCountryFlagInput: Dispatch<SetStateAction<string>>
   countryFlagInput: string
   isDisabled: boolean
-  flagIndex: number
-  onLeave: () => void
-  flagFound: boolean
 }
 
 export function WorldFlagsCarousel({
   allFlags,
   setAllFlagsIndex,
   carouselRef,
-  onLeave,
   setCountryFlagInput,
   countryFlagInput,
   isDisabled,
-  flagIndex,
-  flagFound
 }: WorldFlagsCarouselProps) {
   const { menuIsOpen } = useMainMenu()
-
-  const foundFlagsLenght = allFlags.filter(flag => flag.found === true).length
 
   return (
     <Box pl='3' pr='3'>
@@ -97,13 +89,6 @@ export function WorldFlagsCarousel({
           currentFlagWasFound={flag.found}
           name={flag.name} />)}
       </Carousel>
-      <WorldFlagsFoundStatus
-        totalLenght={allFlags.length}
-        foundLenght={foundFlagsLenght}
-        currentFlagNumber={flagIndex + 1}
-        onLeave={onLeave}
-        flagFound={flagFound}
-      />
     </Box>
   )
 }

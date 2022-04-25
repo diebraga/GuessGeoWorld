@@ -1,4 +1,4 @@
-import { Box, Heading, Input, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Heading, useDisclosure, useToast } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";
@@ -10,6 +10,10 @@ import { FoundAllFlagsModal } from "./FoundAllFlagsModal";
 import { useRouter } from "next/router";
 import { LeaveCountryFlagsAlert } from "./LeaveCountryFlagsAlert";
 import { WorldFlagsFailedModal } from "./WorldFlagsFailedModal";
+import { useCounter } from "../../hooks/useCounter";
+import { WorldFlagsFoundStatus } from "./WorldFlagsFoundStatus";
+import { WorldFlagsModalHelp } from "./WorldFlagsModalHelp";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -21,6 +25,7 @@ const randomFlags = allCountriesFlags.sort(() => Math.random() - 0.5)
 
 export function WorldFlagsComponent() {
   const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(randomFlags)
+  const [worldFlagsModalHelpWillNotOpen, setWorldFlagsModalHelpWllNotOpen] = useLocalStorage("worldFlagsModalHelpWillOpen", false)
 
   const [countryFlagInput, setCountryFlagInput] = useState("")
 
@@ -32,6 +37,16 @@ export function WorldFlagsComponent() {
 
   const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
+  const secondsTimer = 2400
+
+  const {
+    currentSeconds,
+    startCountSeconds,
+    stopCountSeconds,
+    timeIsRunning,
+    clearCountSeconds
+  } = useCounter(secondsTimer)
+
   const [allFlagsIndex, setAllFlagsIndex] = useState(0)
 
   const currentFlag = allCountriesFlags[allFlagsIndex]
@@ -39,6 +54,8 @@ export function WorldFlagsComponent() {
   const updatedCurrentFlag = AllCountriesFlags.find(flag => flag.code === currentFlag.code)
 
   const notFoundFlagsLenght = AllCountriesFlags.filter(flag => flag.found === false).length
+
+  const foundFlagsLenght = AllCountriesFlags.filter(flag => flag.found === true).length
 
   const notFoundFlags = AllCountriesFlags.filter(flag => flag.found === false)
 
@@ -98,18 +115,40 @@ export function WorldFlagsComponent() {
     onClose: failFlagsModalOnClose
   } = useDisclosure()
 
+  const {
+    isOpen: modalHelplIsOpen,
+    onOpen: modalHelplOnOpen,
+    onClose: modalHelplOnClose
+  } = useDisclosure()
+
+  useEffect(() => {
+    if (!worldFlagsModalHelpWillNotOpen) {
+      modalHelplOnOpen()
+    } else if (worldFlagsModalHelpWillNotOpen && !modalHelplIsOpen) {
+      startCountSeconds()
+    }
+  }, [worldFlagsModalHelpWillNotOpen])
+
   function onRestartNewGame(): void {
     completedFlagsModalOnClose()
     setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5))
     carouselRef.current.goToSlide(0)
     failFlagsModalOnClose()
+    startCountSeconds()
   }
 
   function confirmAlertLeaveGame(): void {
     leaveGameOnCloseAlert()
     failFlagsModalOnOpen()
     startFailedSound()
+    clearCountSeconds()
   }
+
+  useEffect(() => {
+    if (currentSeconds === 0) {
+      confirmAlertLeaveGame()
+    }
+  }, [currentSeconds])
 
   useEffect(() => {
     if (notFoundFlagsLenght === 0) {
@@ -124,8 +163,22 @@ export function WorldFlagsComponent() {
 
   const cancelRef = useRef()
 
+  function onStartGame() {
+    startCountSeconds()
+    modalHelplOnClose()
+  }
+
   return (
     <Box pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
+      <WorldFlagsModalHelp
+        allFlagsLenght={AllCountriesFlags.length}
+        isOpen={modalHelplIsOpen}
+        onClose={onStartGame}
+        setWorldFlagsModalHelpWllNotOpen={setWorldFlagsModalHelpWllNotOpen}
+        worldFlagsModalHelpWillNotOpen={worldFlagsModalHelpWillNotOpen}
+        totalSeconds={secondsTimer}
+      />
+
       <FoundAllFlagsModal
         onClose={() => router.push('/')}
         onRestart={onRestartNewGame}
@@ -157,9 +210,14 @@ export function WorldFlagsComponent() {
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
-        flagIndex={allFlagsIndex}
+      />
+      <WorldFlagsFoundStatus
+        totalLenght={AllCountriesFlags.length}
+        foundLenght={foundFlagsLenght}
+        currentFlagNumber={allFlagsIndex + 1}
         onLeave={leaveGameOnOpenAlert}
         flagFound={updatedCurrentFlag.found}
+        currentSeconds={currentSeconds}
       />
     </Box>
   )

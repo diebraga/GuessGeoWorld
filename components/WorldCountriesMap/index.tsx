@@ -185,7 +185,7 @@ const WorldCountriesMap = () => {
           />)}
         </Wrap>
         <Flex mb="3" justifyContent='space-between'>
-          <Text>{foundCountries.length + "/" + AllCountries.length}</Text>
+          <Text fontWeight='bold'>{foundCountries.length + "/" + AllCountries.length}</Text>
           <CountdownCircleTimer
             key={countDowKey}
             isPlaying={timeIsRunning}
@@ -210,7 +210,7 @@ const WorldCountriesMap = () => {
               )
             }}
           </CountdownCircleTimer>
-          <Link color={useColorModeValue("red.500", "red.400")} onClick={onLeaveGame}>
+          <Link color={useColorModeValue("red.500", "red.400")} fontWeight='bold' onClick={onLeaveGame}>
             End game
           </Link>
         </Flex>

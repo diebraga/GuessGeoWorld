@@ -82,7 +82,7 @@ export const allCountriesFlags = [
   { name: "Singapore", code: "sg", found: false },
   { name: "Indonesia", code: "id", found: false },
   { name: "India", code: "in", found: false },
-  { name: "Ireland", code: "ir", found: false },
+  { name: "Ireland", code: "ie", found: false },
   { name: "Iraq", code: "iq", found: false },
   { name: "Iran", code: "ir", found: false },
   { name: "Iceland", code: "is", found: false },

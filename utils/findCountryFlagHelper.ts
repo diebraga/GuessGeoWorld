@@ -241,7 +241,7 @@ export function findCountryFlagHelper(countryName: string) {
     return "in"
   }
   else if (formattedCountryName === "ireland") {
-    return "ir"
+    return "ie"
   }
   else if (formattedCountryName === "iraq") {
     return "iq"
@@ -333,7 +333,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "mexico") {
     return "mx"
   }
-  else if (formattedCountryName === "macedonia") {
+  else if (formattedCountryName === "macedonia" || formattedCountryName === "northmacedonia") {
     return "mk"
   }
   else if (formattedCountryName === "mali") {

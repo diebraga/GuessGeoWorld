@@ -333,7 +333,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "mexico") {
     return "Mexico"
   }
-  else if (formattedCountryName === "macedonia") {
+  else if (formattedCountryName === "macedonia" || formattedCountryName === "northmacedonia") {
     return "Macedonia"
   }
   else if (formattedCountryName === "mali") {

@@ -2,7 +2,6 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
@@ -12,7 +11,8 @@ import {
   Badge,
   Button,
 } from '@chakra-ui/react'
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useWindowSize } from '../../hooks/useWindowSize';
+import { convertSecoundsToMmSs } from '../../utils/convertSecoundsToMmSs';
 
 type WorldFlagsFoundStatusProps = {
   foundLenght: number
@@ -20,9 +20,10 @@ type WorldFlagsFoundStatusProps = {
   currentFlagNumber: number
   onLeave: () => void
   flagFound: boolean
+  currentSeconds: number
 }
 
-export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave, flagFound }: WorldFlagsFoundStatusProps) {
+export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave, flagFound, currentSeconds }: WorldFlagsFoundStatusProps) {
   const { width } = useWindowSize()
 
   const isSmallerThan400px = width < 400
@@ -30,28 +31,34 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
   return (
     <TableContainer>
       <Table variant='unstyled' size='sm'>
+        <TableCaption mt='0'>
+          <Button isFullWidth colorScheme='red' variant='outline' onClick={onLeave} size={isSmallerThan400px ? "sm" : "md"}>
+            Leave Game
+          </Button>
+        </TableCaption>
+
         <Thead>
           <Tr>
             <Th>Found</Th>
             <Th>Current</Th>
-            <Th isNumeric>Leave game</Th>
+            <Th isNumeric>Time</Th>
           </Tr>
         </Thead>
         <Tbody>
           <Tr>
             <Td>
-              <Text as='span' fontSize='x-large' fontWeight='bold'>
+              <Text as='span' fontSize={isSmallerThan400px ? "large" : "x-large"} fontWeight='bold'>
                 {foundLenght}
               </Text>
               <Text as='span' fontSize='md' fontWeight='400' mx='1'>
                 of
               </Text>
-              <Text as='span' fontSize='x-large' fontWeight='bold'>
+              <Text as='span' fontSize={isSmallerThan400px ? "large" : "x-large"} fontWeight='bold'>
                 {totalLenght}
               </Text>
             </Td>
             <Td>
-              <Text as='span' fontSize='x-large' fontWeight='bold'>
+              <Text as='span' fontSize={isSmallerThan400px ? "large" : "x-large"} fontWeight='bold'>
                 {currentFlagNumber}
               </Text>
               <Badge variant='outline' colorScheme={flagFound ? "green" : "red"} ml='1.5' size='xsm'>
@@ -59,9 +66,9 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
               </Badge>
             </Td>
             <Td isNumeric>
-              <Button size='sm' h={isSmallerThan400px ? "23px" : "26px"} colorScheme='red' variant='outline' onClick={onLeave} >
-                Leave
-              </Button>
+              <Text as='span' fontSize={isSmallerThan400px ? "large" : "x-large"} fontWeight='bold'>
+                {convertSecoundsToMmSs(currentSeconds)}
+              </Text>
             </Td>
           </Tr>
         </Tbody>
