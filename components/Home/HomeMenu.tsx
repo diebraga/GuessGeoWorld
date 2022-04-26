@@ -1,6 +1,7 @@
 import { Box, Center, Heading, HStack, Text, useColorModeValue } from '@chakra-ui/react'
 import { motion } from 'framer-motion';
 import Link from 'next/link'
+import { GithubStars } from './GithubStars';
 
 export function HomeMenu() {
   return (
@@ -78,6 +79,7 @@ export function HomeMenu() {
           </motion.div>
         </Link>
       </HStack>
+      <GithubStars />
     </Center>
   )
 }

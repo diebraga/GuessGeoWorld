@@ -1,6 +1,5 @@
-import { Box, Center, Heading, Image, Link as ChackraLink } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import { HeadComponent } from '../components/HeadComponent'
 import { HomeMenu } from '../components/Home/HomeMenu'
 import MotionBox from '../components/MotionBox'
@@ -14,6 +13,7 @@ const Home: NextPage = () => {
       />
 
       <HomeMenu />
+
       <MotionBox
         animate={{ y: 20 }}
         transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
