@@ -19,6 +19,7 @@ type WorldFlagsCarouselProps = {
   setCountryFlagInput: Dispatch<SetStateAction<string>>
   countryFlagInput: string
   isDisabled: boolean
+  currentFlag: AllCountryFlagsTypes
 }
 
 export function WorldFlagsCarousel({
@@ -28,6 +29,7 @@ export function WorldFlagsCarousel({
   setCountryFlagInput,
   countryFlagInput,
   isDisabled,
+  currentFlag
 }: WorldFlagsCarouselProps) {
   const { menuIsOpen } = useMainMenu()
 
@@ -87,6 +89,7 @@ export function WorldFlagsCarousel({
           code={flag.code}
           key={flag.code}
           currentFlagWasFound={flag.found}
+          currentFlag={currentFlag}
           name={flag.name} />)}
       </Carousel>
     </Box>

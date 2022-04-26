@@ -26,14 +26,18 @@ a {
   transform: translateY(-50%);
 
   img {
-    height: 300px;
+    max-height: 310px;
 }
 }
 
-.img-flag-fail-modal {
-  height: 200px;
+.centered-element {
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  transform: translateY(-25%);
 
   img {
-  }
+    max-height: 310px;
+}
 }
 

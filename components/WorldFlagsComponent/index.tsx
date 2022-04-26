@@ -1,4 +1,4 @@
-import { Box, Heading, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Heading, Icon, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import { useCounter } from "../../hooks/useCounter";
 import { WorldFlagsFoundStatus } from "./WorldFlagsFoundStatus";
 import { WorldFlagsModalHelp } from "./WorldFlagsModalHelp";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { IoMdHelp } from "react-icons/io";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -59,7 +60,6 @@ export function WorldFlagsComponent() {
 
   const notFoundFlags = AllCountriesFlags.filter(flag => flag.found === false)
 
-  console.log(notFoundFlagsLenght)
   console.log(updatedCurrentFlag)
 
   const isLastItem = allFlagsIndex + 1 === carouselRef.current?.state.totalItems || 0
@@ -198,6 +198,13 @@ export function WorldFlagsComponent() {
         onRestart={onRestartNewGame}
         flagsNotFound={notFoundFlags}
       />
+      <Box left='10px' top='45px' position='absolute'>
+        <IconButton
+          onClick={modalHelplOnOpen}
+          aria-label='Open help'
+          icon={<Icon as={IoMdHelp} />}
+        />
+      </Box>
 
       <Heading mb='1' textAlign='center' as="h1" mt="10%">
         Name this country
@@ -210,6 +217,7 @@ export function WorldFlagsComponent() {
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
+        currentFlag={currentFlag}
       />
       <WorldFlagsFoundStatus
         totalLenght={AllCountriesFlags.length}
@@ -219,6 +227,6 @@ export function WorldFlagsComponent() {
         flagFound={updatedCurrentFlag.found}
         currentSeconds={currentSeconds}
       />
-    </Box>
+    </Box >
   )
 }
