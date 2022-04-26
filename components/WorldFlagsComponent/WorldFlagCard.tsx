@@ -1,5 +1,5 @@
 import { Box, Center, Heading, Input, useColorModeValue } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Flag from 'react-world-flags'
 
 type AllCountryFlagsTypes = {
@@ -19,7 +19,11 @@ type WorldFlagCardProps = {
 }
 
 export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, setCountryFlagInput, countryFlagInput, currentFlag }: WorldFlagCardProps) {
-  document.getElementById("qaQatar").style.height = '280px'
+  const qatarFlag = document.getElementById("qaQatar")
+
+  useEffect(() => {
+    if (qatarFlag) qatarFlag.style.height = "280px"
+  }, [qatarFlag])
   // qatarFlagEl.style.height = "185px"
   return (
     <Box position='relative' className='centered-element-carousel' h='99%'>

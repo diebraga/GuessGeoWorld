@@ -149,7 +149,7 @@ export function WorldFlagsComponent() {
   }, [currentSeconds])
 
   useEffect(() => {
-    if (notFoundFlagsLenght === 198) {
+    if (notFoundFlagsLenght === 0) {
       completedFlagsModalOnOpen()
       startFinishedSound()
       stopCountSeconds()
