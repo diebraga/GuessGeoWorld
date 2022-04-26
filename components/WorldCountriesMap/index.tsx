@@ -18,6 +18,7 @@ import { useCounter } from "../../hooks/useCounter";
 import { HelpCountriesWorldModal } from "./HelpCountriesWorldModal";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { IoMdHelp } from 'react-icons/io'
+import { useWindowSize } from "../../hooks/useWindowSize";
 type FoundCountries = {
   name: string
   id: string
@@ -28,6 +29,9 @@ const WorldCountriesMap = () => {
   const [countDowKey, setCountDowKey] = useState(0)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
   const [modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen] = useLocalStorage("modalHelpWorldCountriesWllNotOpen", false)
+
+  const { width } = useWindowSize()
+  const isSmallerThan480px = width < 480
 
   const secondsTimer = 1200
 
@@ -140,8 +144,8 @@ const WorldCountriesMap = () => {
   const countriesNotFound = AllCountries.filter(entry1 => !foundCountries.some(entry2 => entry1.name === entry2.name));
 
   return (
-    <Box display='block' overflowY='scroll'>
-      <Box pl='2.5' mt='1.5'>
+    <Box display='block' overflowY='scroll' pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
+      <Box left='10px' top='45px' position='absolute'>
         <IconButton
           onClick={modalHelpOnOpen}
           aria-label='Open help'
@@ -176,7 +180,7 @@ const WorldCountriesMap = () => {
         onRestart={onRestartGame}
       />
 
-      <Box pl="3" pr="3" pt="0" mt="2">
+      <Box pl="3" pr="3" pt="0" mt={isSmallerThan480px ? "45px" : "2"}>
         <Wrap overflowY='scroll' overflowX='hidden' h="80px">
           {foundCountries.map(country => <FoundWorldCountriesList
             key={country.id}
@@ -184,7 +188,7 @@ const WorldCountriesMap = () => {
             foundCountries={foundCountries}
           />)}
         </Wrap>
-        <Flex mb="3" justifyContent='space-between'>
+        <Flex mb="3" justifyContent='space-between' mt='2'>
           <Text fontWeight='bold'>{foundCountries.length + "/" + AllCountries.length}</Text>
           <CountdownCircleTimer
             key={countDowKey}

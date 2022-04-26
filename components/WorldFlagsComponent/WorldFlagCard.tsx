@@ -19,7 +19,7 @@ type WorldFlagCardProps = {
 }
 
 export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, setCountryFlagInput, countryFlagInput, currentFlag }: WorldFlagCardProps) {
-  // const currFlagEl = document.getElementById(currentFlag.code + currentFlag.name)
+  document.getElementById("qaQatar").style.height = '280px'
   // qatarFlagEl.style.height = "185px"
   return (
     <Box position='relative' className='centered-element-carousel' h='99%'>
