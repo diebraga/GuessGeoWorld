@@ -84,7 +84,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "botswana") {
     return "Botswana"
   }
-  else if (formattedCountryName === "centralafricanrep." || formattedCountryName === "centralafricanrepublic") {
+  else if (formattedCountryName === "centralafricanrep." || formattedCountryName === "centralafricanrepublic" || formattedCountryName === "car") {
     return "Central African Rep."
   }
   else if (formattedCountryName === "canada") {
@@ -105,7 +105,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "côted'ivoire" || formattedCountryName === "coted'ivoire" || formattedCountryName === "ivorycoast") {
     return "Côte d'Ivoire"
   }
-  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo" || formattedCountryName === "drc") {
+  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo" || formattedCountryName === "drc" || formattedCountryName === "democraticrepublicofcongo") {
     return "Dem. Rep. Congo"
   }
   else if (formattedCountryName === "congo") {
@@ -462,7 +462,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "qatar") {
     return "Qatar"
   }
-  else if (formattedCountryName === "romania") {
+  else if (formattedCountryName === "romania" || formattedCountryName === "romenia") {
     return "Romania"
   }
   else if (formattedCountryName === "russia") {
@@ -546,7 +546,7 @@ export function findCountryHelper(countryName: string) {
   else if (formattedCountryName === "turkmenistan") {
     return "Turkmenistan"
   }
-  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste" || formattedCountryName === "easttimor") {
+  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste" || formattedCountryName === "easttimor" || formattedCountryName === "timor-lest") {
     return "Timor-leste"
   }
   else if (formattedCountryName === "trinidadandtobago") {

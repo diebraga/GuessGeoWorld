@@ -84,7 +84,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "botswana") {
     return "bw"
   }
-  else if (formattedCountryName === "centralafricanrep." || formattedCountryName === "centralafricanrepublic") {
+  else if (formattedCountryName === "centralafricanrep." || formattedCountryName === "centralafricanrepublic" || formattedCountryName === "car") {
     return "cf"
   }
   else if (formattedCountryName === "canada") {
@@ -105,7 +105,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "côted'ivoire" || formattedCountryName === "coted'ivoire" || formattedCountryName === "ivorycoast") {
     return "ci"
   }
-  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo" || formattedCountryName === "drc") {
+  else if (formattedCountryName === "dem.rep.congo" || formattedCountryName === "democraticrepublicofthecongo" || formattedCountryName === "drc" || formattedCountryName === "democraticrepublicofcongo") {
     return "cd"
   }
   else if (formattedCountryName === "congo") {
@@ -462,7 +462,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "qatar") {
     return "qa"
   }
-  else if (formattedCountryName === "romania") {
+  else if (formattedCountryName === "romania" || formattedCountryName === "romenia") {
     return "ro"
   }
   else if (formattedCountryName === "russia") {
@@ -546,7 +546,7 @@ export function findCountryFlagHelper(countryName: string) {
   else if (formattedCountryName === "turkmenistan") {
     return "tm"
   }
-  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste" || formattedCountryName === "easttimor") {
+  else if (formattedCountryName === "timor-leste" || formattedCountryName === "timorleste" || formattedCountryName === "easttimor" || formattedCountryName === "timor-lest") {
     return "tl"
   }
   else if (formattedCountryName === "trinidadandtobago") {

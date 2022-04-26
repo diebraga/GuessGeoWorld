@@ -60,8 +60,6 @@ export function WorldFlagsComponent() {
 
   const notFoundFlags = AllCountriesFlags.filter(flag => flag.found === false)
 
-  console.log(updatedCurrentFlag)
-
   const isLastItem = allFlagsIndex + 1 === carouselRef.current?.state.totalItems || 0
 
   function findCountryFlag() {
@@ -151,9 +149,11 @@ export function WorldFlagsComponent() {
   }, [currentSeconds])
 
   useEffect(() => {
-    if (notFoundFlagsLenght === 0) {
+    if (notFoundFlagsLenght === 198) {
       completedFlagsModalOnOpen()
       startFinishedSound()
+      stopCountSeconds()
+      clearCountSeconds()
     }
   }, [notFoundFlagsLenght])
 

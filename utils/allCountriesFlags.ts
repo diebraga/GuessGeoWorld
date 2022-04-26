@@ -12,7 +12,7 @@ export const allCountriesFlags = [
   { name: "Antarctica", code: "aq", found: false },
   { name: "Austria", code: "at", found: false },
   { name: "Australia", code: "au", found: false },
-  { name: "Aruba", code: "AW", found: false },
+  // { name: "Aruba", code: "AW", found: false },
   { name: "Azerbaijan", code: "AZ", found: false },
   { name: "Bosnia and Herzegovina", code: "BA", found: false },
   { name: "Barbados", code: "BB", found: false },
