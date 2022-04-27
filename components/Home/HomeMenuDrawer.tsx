@@ -1,17 +1,10 @@
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Center,
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
   Heading,
   Box,
 } from '@chakra-ui/react'

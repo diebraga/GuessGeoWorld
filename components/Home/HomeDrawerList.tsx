@@ -1,5 +1,4 @@
 import {
-  List,
   ListItem,
   UnorderedList,
   VStack,
