@@ -22,10 +22,14 @@ type AllCountryFlagsTypes = {
   found: boolean
 }
 
+type WorldFlagsComponentProps = {
+  continent: string
+}
+
 const randomFlags = allCountriesFlags.sort(() => Math.random() - 0.5)
 
-export function WorldFlagsComponent() {
-  const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(randomFlags)
+export function WorldFlagsComponent({ continent }: WorldFlagsComponentProps) {
+  const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(randomFlags.filter(item => item.continent.includes(continent) === true))
   const [worldFlagsModalHelpWillNotOpen, setWorldFlagsModalHelpWllNotOpen] = useLocalStorage("worldFlagsModalHelpWillOpen", false)
 
   const [countryFlagInput, setCountryFlagInput] = useState("")
@@ -129,7 +133,7 @@ export function WorldFlagsComponent() {
 
   function onRestartNewGame(): void {
     completedFlagsModalOnClose()
-    setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5))
+    setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5).filter(item => item.continent.includes(continent) === true))
     carouselRef.current.goToSlide(0)
     failFlagsModalOnClose()
     startCountSeconds()
@@ -213,7 +217,7 @@ export function WorldFlagsComponent() {
       <WorldFlagsCarousel
         countryFlagInput={countryFlagInput}
         setCountryFlagInput={setCountryFlagInput}
-        isDisabled={updatedCurrentFlag.found}
+        isDisabled={updatedCurrentFlag?.found || false}
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
@@ -224,9 +228,10 @@ export function WorldFlagsComponent() {
         foundLenght={foundFlagsLenght}
         currentFlagNumber={allFlagsIndex + 1}
         onLeave={leaveGameOnOpenAlert}
-        flagFound={updatedCurrentFlag.found}
+        flagFound={updatedCurrentFlag?.found || false}
         currentSeconds={currentSeconds}
       />
     </Box >
   )
 }
+
