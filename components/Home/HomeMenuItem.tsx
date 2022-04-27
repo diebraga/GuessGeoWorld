@@ -1,16 +1,15 @@
-import { Box, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Text, useColorModeValue, Link } from '@chakra-ui/react'
 import { motion } from 'framer-motion';
-import Link from 'next/link'
 
 type HomeMenuItemProps = {
-  href: string
   title: string
   description: string
+  onClick: () => void
 }
 
-export function HomeMenuItem({ href, title, description }: HomeMenuItemProps) {
+export function HomeMenuItem({ onClick, title, description }: HomeMenuItemProps) {
   return (
-    <Link href={href} passHref>
+    <Link onClick={onClick}>
       <motion.div
         whileHover={{
           scale: 1.1,
