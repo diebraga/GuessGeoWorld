@@ -32,12 +32,7 @@ type WorldCountriesMapProps = {
 
 const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
   const filterCountriesByContinent =
-    AllCountries.
-      splice(0,
-        AllCountries.length,
-        ...AllCountries.
-          filter(item => item.continent.
-            includes(continent) === true))
+    AllCountries.filter(item => item.continent.includes(continent) === true)
 
   const [country, setCountry] = useState('')
   const [countDowKey, setCountDowKey] = useState(0)
@@ -47,7 +42,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
   const { width } = useWindowSize()
   const isSmallerThan480px = width < 480
 
-  const secondsTimer = 1200
+  const secondsTimer = seconds
 
   const {
     currentSeconds,
@@ -177,6 +172,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
         />
       </Box>
       <HelpCountriesWorldModal
+        totalSeconds={seconds}
         onClose={closeModalHelp}
         isOpen={modalHelpIsOpen}
         setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}

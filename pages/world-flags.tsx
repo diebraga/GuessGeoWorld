@@ -27,11 +27,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   function normalizeSeconds(cont: string): number {
     if (continent === "world") {
-      return 2400
-    } else if (continent === "africa") {
       return 1200
+    } else if (continent === "africa") {
+      return 550
     } else if (continent === "asia") {
-      return 1020
+      return 550
     } else if (continent === "north-america") {
       return 600
     } else if (continent === "south-america") {

@@ -13,6 +13,7 @@ import {
   Checkbox,
 } from '@chakra-ui/react'
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { convertSecoundsToMmSs } from '../../utils/convertSecoundsToMmSs';
 
 type HelpCountriesWorldModalProps = {
   isOpen: boolean
@@ -20,9 +21,18 @@ type HelpCountriesWorldModalProps = {
   modalHelpWorldCountriesWllNotOpen: boolean
   setModalHelpWorldCountriesWllNotOpen: (value: boolean | ((val: boolean) => boolean)) => void
   allCountriesLenght: number
+  totalSeconds: number
 }
 
-export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountriesWllNotOpen, setModalHelpWorldCountriesWllNotOpen, allCountriesLenght }: HelpCountriesWorldModalProps) {
+export function HelpCountriesWorldModal({
+  isOpen,
+  onClose,
+  modalHelpWorldCountriesWllNotOpen,
+  setModalHelpWorldCountriesWllNotOpen,
+  allCountriesLenght,
+  totalSeconds
+}: HelpCountriesWorldModalProps) {
+
   const { width } = useWindowSize()
 
   return (
@@ -36,7 +46,7 @@ export function HelpCountriesWorldModal({ isOpen, onClose, modalHelpWorldCountri
           </Box>
           <Text>
             Your goal is find {allCountriesLenght} missing countries in the map. <br />
-            You have 20 minutes to complete the task. <br />
+            You have {convertSecoundsToMmSs(totalSeconds).slice(0, -3)} minutes to complete the task. <br />
             <span style={{ fontWeight: 400 }}>Good luck.🍀</span>
           </Text>
         </ModalBody>

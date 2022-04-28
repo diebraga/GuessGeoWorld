@@ -177,7 +177,7 @@ export const AllCountries = [
   { name: "Swaziland", continent: "world africa" },
   { name: "Syria", continent: "world asia" },
   { name: "Chad", continent: "world africa" },
-  { name: "Togo", continent: "world oceania" },
+  { name: "Togo", continent: "world africa" },
   { name: "Thailand", continent: "world asia" },
   { name: "Tajikistan", continent: "world asia" },
   { name: "Turkmenistan", continent: "world asia" },
