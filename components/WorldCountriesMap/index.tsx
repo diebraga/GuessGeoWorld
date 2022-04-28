@@ -19,12 +19,26 @@ import { HelpCountriesWorldModal } from "./HelpCountriesWorldModal";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { IoMdHelp } from 'react-icons/io'
 import { useWindowSize } from "../../hooks/useWindowSize";
+
 type FoundCountries = {
   name: string
   id: string
 }
 
-const WorldCountriesMap = () => {
+type WorldCountriesMapProps = {
+  continent: string
+  seconds: number | undefined
+}
+
+const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
+  const filterCountriesByContinent =
+    AllCountries.
+      splice(0,
+        AllCountries.length,
+        ...AllCountries.
+          filter(item => item.continent.
+            includes(continent) === true))
+
   const [country, setCountry] = useState('')
   const [countDowKey, setCountDowKey] = useState(0)
   const [foundCountries, setFoundCountries] = useState<FoundCountries[]>([])
@@ -87,9 +101,19 @@ const WorldCountriesMap = () => {
     startCountSeconds()
   }
 
+  const currentFoundNation = filterCountriesByContinent.find(nation => nation.name === findCountryHelper(country))
+
   function addCountry() {
-    if (findCountryHelper(country) !== "" && !foundCountries.some(item => item.name === findCountryHelper(country))) {
-      setFoundCountries(prev => [...prev, { name: findCountryHelper(country), id: '_' + Math.random().toString(36).substr(2, 9) }])
+    if (findCountryHelper(country) !== ""
+      && !foundCountries.
+        some(item => item.name ===
+          findCountryHelper(country))
+      && currentFoundNation.continent.includes(continent)) {
+      setFoundCountries(prev => [...prev, {
+        name: findCountryHelper(country),
+        id: '_' + Math.random().toString(36).substr(2, 9),
+        continent: continent
+      }])
       setCountry("")
       startSuccessSound()
       toast({
@@ -134,14 +158,14 @@ const WorldCountriesMap = () => {
   }
 
   useEffect(() => {
-    if (foundCountries.length === AllCountries.length) {
+    if (foundCountries.length === filterCountriesByContinent.length) {
       completedCountriesModalOnOpen()
       startFinishedSound()
       stopCountSeconds()
     }
   }, [foundCountries])
 
-  const countriesNotFound = AllCountries.filter(entry1 => !foundCountries.some(entry2 => entry1.name === entry2.name));
+  const countriesNotFound = filterCountriesByContinent.filter(entry1 => !foundCountries.some(entry2 => entry1.name === entry2.name));
 
   return (
     <Box display='block' overflowY='scroll' pl={["0px", "15%", "20%", "30%"]} pr={["0px", "15%", "20%", "30%"]}>
@@ -157,7 +181,7 @@ const WorldCountriesMap = () => {
         isOpen={modalHelpIsOpen}
         setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}
         modalHelpWorldCountriesWllNotOpen={modalHelpWorldCountriesWllNotOpen}
-        allCountriesLenght={AllCountries.length}
+        allCountriesLenght={filterCountriesByContinent.length}
       />
 
       <ModalMissedCountries
@@ -189,7 +213,7 @@ const WorldCountriesMap = () => {
           />)}
         </Wrap>
         <Flex mb="3" justifyContent='space-between' mt='2'>
-          <Text fontWeight='bold'>{foundCountries.length + "/" + AllCountries.length}</Text>
+          <Text fontWeight='bold'>{foundCountries.length + "/" + filterCountriesByContinent.length}</Text>
           <CountdownCircleTimer
             key={countDowKey}
             isPlaying={timeIsRunning}
