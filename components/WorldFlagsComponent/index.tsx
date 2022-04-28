@@ -24,12 +24,21 @@ type AllCountryFlagsTypes = {
 
 type WorldFlagsComponentProps = {
   continent: string
+  seconds: number
 }
 
 const randomFlags = allCountriesFlags.sort(() => Math.random() - 0.5)
 
-export function WorldFlagsComponent({ continent }: WorldFlagsComponentProps) {
-  const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(randomFlags.filter(item => item.continent.includes(continent) === true))
+
+export function WorldFlagsComponent({ continent, seconds }: WorldFlagsComponentProps) {
+  const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(
+    randomFlags.
+      splice(0,
+        randomFlags.length,
+        ...randomFlags.
+          filter(item => item.continent.
+            includes(continent) === true)))
+
   const [worldFlagsModalHelpWillNotOpen, setWorldFlagsModalHelpWllNotOpen] = useLocalStorage("worldFlagsModalHelpWillOpen", false)
 
   const [countryFlagInput, setCountryFlagInput] = useState("")
@@ -42,7 +51,7 @@ export function WorldFlagsComponent({ continent }: WorldFlagsComponentProps) {
 
   const { startSuccessSound, startFinishedSound, startFailedSound } = useSound()
 
-  const secondsTimer = 2400
+  const secondsTimer = seconds
 
   const {
     currentSeconds,
@@ -133,7 +142,10 @@ export function WorldFlagsComponent({ continent }: WorldFlagsComponentProps) {
 
   function onRestartNewGame(): void {
     completedFlagsModalOnClose()
-    setAllCountriesFlags(randomFlags.sort(() => Math.random() - 0.5).filter(item => item.continent.includes(continent) === true))
+    setAllCountriesFlags(randomFlags.
+      sort(() => Math.random() - 0.5).
+      filter(item => item.continent.
+        includes(continent) === true))
     carouselRef.current.goToSlide(0)
     failFlagsModalOnClose()
     startCountSeconds()

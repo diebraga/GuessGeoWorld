@@ -6,7 +6,7 @@ export const allCountriesFlags = [
   { name: "United Arab Emirates", code: "ae", found: false, continent: "world asia" },
   { name: "Afghanistan", code: "af", found: false, continent: "world asia" },
   { name: "Antigua and Barbuda", code: "ag", found: false, continent: "world " },
-  { name: "Albania", code: "al", found: false, continent: "world north-america" },
+  { name: "Albania", code: "al", found: false, continent: "world europe" },
   { name: "Armenia", code: "am", found: false, continent: "world europe" },
   { name: "Angola", code: "ao", found: false, continent: "world africa" },
   { name: "Antarctica", code: "aq", found: false, continent: "world " },
