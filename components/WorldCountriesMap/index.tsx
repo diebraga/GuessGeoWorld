@@ -150,6 +150,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
     leaveGameModalOnOpen()
     leaveGameOnCloseAlert()
     startFailedSound()
+    stopCountSeconds()
   }
 
   useEffect(() => {
@@ -245,7 +246,10 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
         setCountry={setCountry}
       />
 
-      <WorldCountriesMapCanvas foundCountries={foundCountries} />
+      <WorldCountriesMapCanvas
+        foundCountries={foundCountries}
+        continent={continent}
+      />
     </Box>
   );
 };
