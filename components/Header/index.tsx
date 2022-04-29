@@ -18,8 +18,12 @@ import { GoMute, GoUnmute } from 'react-icons/go'
 import { RiMoonFill, RiSunLine } from "react-icons/ri";
 import { useMainMenu } from '../../hooks/useMainMenu'
 import { useSound } from '../../hooks/useSound';
+import { normalizeHeaderLanguage } from '../../translations/header/normalizeHeaderLanguage'
+import LanguageMenu from './LanguageMenu'
 
-export default function Header() {
+export default function Header({ locale }) {
+  const { translation } = normalizeHeaderLanguage(locale)
+
   const { menuIsOpen, onToggleMenu } = useMainMenu()
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -50,20 +54,21 @@ export default function Header() {
             <Link href='/'>
               <Heading as={ChakraLink} textAlign='center' onClick={onToggleMenu}>
                 <HStack>
-                  <Text as='span'>Home</Text> <Icon as={AiFillHome} />
+                  <Text as='span'>{translation.home}</Text> <Icon as={AiFillHome} />
                 </HStack>
               </Heading>
             </Link>
             <ChakraLink onClick={toggleSound}>
               <Heading>
-                <Text as='span'>Sound</Text> <Icon as={soundVolume === 0 ? GoMute : GoUnmute} />
+                <Text as='span'>{translation.sound}</Text> <Icon as={soundVolume === 0 ? GoMute : GoUnmute} />
               </Heading>
             </ChakraLink>
             <ChakraLink onClick={toggleColorMode}>
               <Heading>
-                <Text as='span'>Theme</Text> <Icon as={colorMode === "dark" ? RiSunLine : RiMoonFill} />
+                <Text as='span'>{translation.theme}</Text> <Icon as={colorMode === "dark" ? RiSunLine : RiMoonFill} />
               </Heading>
             </ChakraLink>
+            <LanguageMenu locale={locale} />
           </VStack>
         </VStack>
       </Slide>

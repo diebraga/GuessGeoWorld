@@ -7,14 +7,13 @@ import { SoundProvider } from '../contexts/soundContext'
 import { MainMenuProvider } from '../contexts/mainMenuContext';
 import dynamic from 'next/dynamic';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   const Header = dynamic(() => import('../components/Header'))
-
   return (
     <ChakraProvider theme={theme}>
       <MainMenuProvider>
         <SoundProvider>
-          <Header />
+          <Header locale={router.locale} />
           {/* @ts-ignore */}
           <Component {...pageProps} />
         </SoundProvider>
@@ -24,3 +23,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
+
