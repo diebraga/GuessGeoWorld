@@ -1,0 +1,1 @@
+export type localeType = "pt-BR" | "fr" | "en-US" | "it" | "es-ES"

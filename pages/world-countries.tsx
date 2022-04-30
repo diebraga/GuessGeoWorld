@@ -38,6 +38,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       return 480
     } else if (continent === "oceania") {
       return 490
+    } else if (continent === "europe") {
+      return 1020
     }
   }
 

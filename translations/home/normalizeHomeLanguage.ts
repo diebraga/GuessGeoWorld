@@ -5,7 +5,7 @@ import en from './en-US.json'
 import fr from './fr.json'
 import { localeType } from '../../@types/localeType'
 
-export function normalizeHeaderLanguage(locale: localeType) {
+export function normalizeHomeLanguage(locale: localeType) {
   if (locale === "en-US") {
     return { translation: en }
   } else if (locale === "es-ES") {

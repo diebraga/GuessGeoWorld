@@ -1,15 +1,23 @@
 import { Center, Heading, HStack, useDisclosure } from '@chakra-ui/react'
 import { useRouter } from 'next/router';
+import { localeType } from '../../@types/localeType';
+import { normalizeHomeLanguage } from '../../translations/home/normalizeHomeLanguage';
 import { GithubStars } from './GithubStars';
 import { HomeMenuDrawer } from './HomeMenuDrawer';
 import { HomeMenuItem } from './HomeMenuItem';
 
-const MenuItems = [
-  { title: "World Countries", description: "Can you name all countries the by heart?", query: "world-countries" },
-  { title: "World Flags", description: "Test your knowledge naming country flags!", query: "world-flags" },
-]
+type HomeMenuProps = {
+  locale: localeType
+}
 
-export function HomeMenu() {
+export function HomeMenu({ locale }: HomeMenuProps) {
+  const { translation } = normalizeHomeLanguage(locale)
+
+  const MenuItems = [
+    { title: translation.world_countries, description: translation.can_you_name_all_countries_the_by_heart, query: "world-countries", footer: translation.discover },
+    { title: translation.world_flags, description: translation.test_your_knowledge_naming_country_flags, query: "world-flags", footer: translation.discover },
+  ]
+
   const {
     isOpen: menuDrawerIsOpen,
     onOpen: menuDrawerOnOpen,
@@ -45,6 +53,7 @@ export function HomeMenu() {
                 description={item.description}
                 key={item.title}
                 onClick={() => onOpenDrawer({ path: item.query })}
+                footer={item.footer}
               />
             )
           })}

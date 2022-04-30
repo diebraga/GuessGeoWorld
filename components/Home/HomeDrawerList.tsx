@@ -16,6 +16,7 @@ export function HomeDrawerList() {
     { name: "World", param: "continent=world", level: "hard", colorBadge: "red" },
     { name: "Africa", param: "continent=africa", level: "medium", colorBadge: "yellow" },
     { name: "Asia", param: "continent=asia", level: "medium", colorBadge: "yellow" },
+    { name: "Europe", param: "continent=europe", level: "medium", colorBadge: "yellow" },
     { name: "North America", param: "continent=north-america", level: "medium-easy", colorBadge: "blue" },
     { name: "South America", param: "continent=south-america", level: "easy", colorBadge: "green" },
     { name: "Oceania", param: "continent=oceania", level: "easy", colorBadge: "green" },

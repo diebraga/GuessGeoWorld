@@ -30,6 +30,8 @@ export function WorldCountriesMapCanvas({ foundCountries, continent }: WorldCoun
       return { position: [85, 30], scale: 350 }
     } else if (continent === "oceania") {
       return { position: [125, -20], scale: 400 }
+    } else if (continent === "europe") {
+      return { position: [16, 50], scale: 800 }
     } else {
       return { position: [0, 0], scale: 147 }
     }

@@ -9,9 +9,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { localeType } from '../../@types/localeType'
 import { normalizeHeaderLanguage } from '../../translations/header/normalizeHeaderLanguage'
 
-export default function LanguageMenu({ locale }) {
+type LanguageMenuProps = {
+  locale: localeType
+}
+
+export default function LanguageMenu({ locale }: LanguageMenuProps) {
   const { translation } = normalizeHeaderLanguage(locale)
 
   const router = useRouter()
@@ -44,6 +49,11 @@ export default function LanguageMenu({ locale }) {
           {locale !== "it" && (
             <MenuItem onClick={() => router.push(router.asPath, router.asPath, { locale: "it" })}>
               Italiano 🇮🇹
+            </MenuItem>
+          )}
+          {locale !== "fr" && (
+            <MenuItem onClick={() => router.push(router.asPath, router.asPath, { locale: "fr" })}>
+              Français 🇫🇷
             </MenuItem>
           )}
         </MenuList>

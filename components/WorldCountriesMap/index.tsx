@@ -97,13 +97,13 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
   }
 
   const currentFoundNation = filterCountriesByContinent.find(nation => nation.name === findCountryHelper(country))
-
+  console.log(currentFoundNation?.continent)
   function addCountry() {
     if (findCountryHelper(country) !== ""
       && !foundCountries.
         some(item => item.name ===
           findCountryHelper(country))
-      && currentFoundNation.continent.includes(continent)) {
+      && currentFoundNation?.continent.includes(continent)) {
       setFoundCountries(prev => [...prev, {
         name: findCountryHelper(country),
         id: '_' + Math.random().toString(36).substr(2, 9),

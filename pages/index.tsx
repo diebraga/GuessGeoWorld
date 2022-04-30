@@ -1,18 +1,27 @@
 import { Box, Image } from '@chakra-ui/react'
-import type { NextPage } from 'next'
+import type { GetServerSideProps } from 'next'
+import { localeType } from '../@types/localeType'
 import { HeadComponent } from '../components/HeadComponent'
 import { HomeMenu } from '../components/Home/HomeMenu'
 import MotionBox from '../components/MotionBox'
+import { normalizeHomeLanguage } from '../translations/home/normalizeHomeLanguage'
 
-const Home: NextPage = () => {
+type HomeProps = {
+  locale: localeType
+}
+
+const Home = ({ locale }: HomeProps) => {
+  const { translation } = normalizeHomeLanguage(locale)
   return (
     <Box minH='100vh' alignItems='center' justifyContent='center' display='flex' flexDir='column'>
       <HeadComponent
-        title="GuessGeoWorld - Home"
-        description="GuessGeoWorld Home page"
+        title={`GuessGeoWorld - ${translation.home}`}
+        description={`GuessGeoWorld ${translation.head_description}`}
       />
 
-      <HomeMenu />
+      <HomeMenu
+        locale={locale}
+      />
 
       <MotionBox
         animate={{ y: 20 }}
@@ -28,3 +37,12 @@ const Home: NextPage = () => {
 
 export default Home
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const locale = context.locale
+
+  return {
+    props: {
+      locale
+    },
+  };
+};

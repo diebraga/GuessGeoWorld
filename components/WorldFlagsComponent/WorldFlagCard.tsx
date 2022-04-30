@@ -43,8 +43,8 @@ export function WorldFlagCard({ code, currentFlagWasFound, name, isDisabled, set
         )}
       </Box>
       <Center position='relative' className='centered-element'>
-        <Center border='1px' borderColor={useColorModeValue("gray.500", "gray.600")} minW="100%" maxWidth='100%'>
-          <Flag code={code} id={code + name} />
+        <Center border='1px' borderColor={useColorModeValue("gray.500", "gray.600")} minW="100%" maxWidth='100%' h='100%'>
+          <Flag code={code} id={code + name} className='flag' />
         </Center>
       </Center>
     </Box>

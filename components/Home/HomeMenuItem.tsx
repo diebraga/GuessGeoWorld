@@ -5,9 +5,10 @@ type HomeMenuItemProps = {
   title: string
   description: string
   onClick: () => void
+  footer: string
 }
 
-export function HomeMenuItem({ onClick, title, description }: HomeMenuItemProps) {
+export function HomeMenuItem({ onClick, title, description, footer }: HomeMenuItemProps) {
   return (
     <Link onClick={onClick}>
       <motion.div
@@ -35,7 +36,7 @@ export function HomeMenuItem({ onClick, title, description }: HomeMenuItemProps)
             <p>
               <small>
                 <strong>
-                  Discover
+                  {footer}
                 </strong>
               </small>
             </p>

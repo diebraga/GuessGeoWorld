@@ -12,7 +12,6 @@ export default class MyDocument extends Document {
           <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
         </Head>
         <body>
-          <script src="https://cdn.babylonjs.com/cannon.js"></script>
           <Main />
           <NextScript />
         </body>
