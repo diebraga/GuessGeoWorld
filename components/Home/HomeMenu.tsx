@@ -40,6 +40,7 @@ export function HomeMenu({ locale }: HomeMenuProps) {
       <HomeMenuDrawer
         isOpen={menuDrawerIsOpen}
         onClose={menuDrawerOnClose}
+        locale={locale}
       />
       <Center flexDir='column' mb='4' position='absolute' zIndex='2' top='30%'>
         <Heading fontFamily='Luckiest Guy' fontSize={["37px", "50px", "50px", "69px"]} color='white' textShadow='-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'>

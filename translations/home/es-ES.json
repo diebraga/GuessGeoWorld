@@ -9,11 +9,13 @@
   "test_your_knowledge_naming_country_flags": "¡Pon a prueba tus conocimientos nombrando banderas de países!",
   "africa": "África",
   "asia": "Asia",
-  "north_america": "",
-  "south-america": "",
-  "oceania": "",
-  "hard": "",
-  "medium": "",
-  "medium-easy": "",
-  "easy": ""
+  "north_america": "América del norte",
+  "south-america": "América del sur",
+  "oceania": "Oceanía",
+  "hard": "Difícil",
+  "medium": "Medio",
+  "medium-easy": "Medio-fácil",
+  "easy": "Fácil",
+  "europe": "Europa",
+  "choose_modality": "Elegir modalidad"
 }

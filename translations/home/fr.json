@@ -9,11 +9,13 @@
   "test_your_knowledge_naming_country_flags": "Testez vos connaissances en nommant les drapeaux des pays !",
   "africa": "Afrique",
   "asia": "Asie",
-  "north_america": "",
-  "south-america": "",
-  "oceania": "",
-  "hard": "",
-  "medium": "",
-  "medium-easy": "",
-  "easy": ""
+  "north_america": "Amérique du Nord",
+  "south-america": "Amerique du Sud",
+  "oceania": "Océanie",
+  "hard": "Difficile",
+  "medium": "Moyen",
+  "medium-easy": "Moyen-facile",
+  "easy": "Facile",
+  "europe": "Europe",
+  "choose_modality": "Choisir la modalité"
 }

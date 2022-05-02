@@ -6,20 +6,25 @@ import {
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { localeType } from '../../@types/localeType';
+import { normalizeHomeLanguage } from '../../translations/home/normalizeHomeLanguage';
 
-export function HomeDrawerList() {
+type HomeDrawerListProps = {
+  locale: localeType
+}
+export function HomeDrawerList({ locale }: HomeDrawerListProps) {
   const router = useRouter()
-
+  const { translation } = normalizeHomeLanguage(locale)
   const hrefLink = (router.query.path) as string
 
   const ListItems = [
-    { name: "World", param: "continent=world", level: "hard", colorBadge: "red" },
-    { name: "Africa", param: "continent=africa", level: "medium", colorBadge: "yellow" },
-    { name: "Asia", param: "continent=asia", level: "medium", colorBadge: "yellow" },
-    { name: "Europe", param: "continent=europe", level: "medium", colorBadge: "yellow" },
-    { name: "North America", param: "continent=north-america", level: "medium-easy", colorBadge: "blue" },
-    { name: "South America", param: "continent=south-america", level: "easy", colorBadge: "green" },
-    { name: "Oceania", param: "continent=oceania", level: "easy", colorBadge: "green" },
+    { name: translation.world, param: "continent=world", level: translation.hard, colorBadge: "red" },
+    { name: translation.africa, param: "continent=africa", level: translation.medium, colorBadge: "yellow" },
+    { name: translation.asia, param: "continent=asia", level: translation["medium"], colorBadge: "yellow" },
+    { name: translation.europe, param: "continent=europe", level: translation["medium"], colorBadge: "yellow" },
+    { name: translation.north_america, param: "continent=north-america", level: translation["medium-easy"], colorBadge: "blue" },
+    { name: translation['south-america'], param: "continent=south-america", level: translation["easy"], colorBadge: "green" },
+    { name: translation.oceania, param: "continent=oceania", level: translation["easy"], colorBadge: "green" },
   ]
 
   return (

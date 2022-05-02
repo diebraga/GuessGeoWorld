@@ -9,11 +9,13 @@
   "test_your_knowledge_naming_country_flags": "Test your knowledge naming country flags",
   "africa": "Africa",
   "asia": "Asia",
-  "north_america": "",
-  "south-america": "",
-  "oceania": "",
-  "hard": "",
-  "medium": "",
-  "medium-easy": "",
-  "easy": ""
+  "north_america": "North america",
+  "south-america": "South america",
+  "oceania": "Oceania",
+  "hard": "Hard",
+  "medium": "Medium",
+  "medium-easy": "Medium-easy",
+  "easy": "Easy",
+  "europe": "Europe",
+  "choose_modality": "Choose modality"
 }

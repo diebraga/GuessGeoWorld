@@ -8,9 +8,19 @@ import {
   Heading,
   Box,
 } from '@chakra-ui/react'
+import { localeType } from '../../@types/localeType'
+import { normalizeHomeLanguage } from '../../translations/home/normalizeHomeLanguage'
 import { HomeDrawerList } from './HomeDrawerList'
 
-export function HomeMenuDrawer({ isOpen, onClose }) {
+type HomeMenuDrawerProps = {
+  isOpen: boolean
+  onClose: () => void
+  locale: localeType
+}
+
+export function HomeMenuDrawer({ isOpen, onClose, locale }: HomeMenuDrawerProps) {
+  const { translation } = normalizeHomeLanguage(locale)
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -26,10 +36,12 @@ export function HomeMenuDrawer({ isOpen, onClose }) {
           <Center flexDir='column' minH='100vh' alignItems='center'>
             <Box>
               <Heading as='span'>
-                Choose modality 🌎
+                {translation.choose_modality} 🌎
               </Heading>
 
-              <HomeDrawerList />
+              <HomeDrawerList
+                locale={locale}
+              />
             </Box>
 
           </Center>

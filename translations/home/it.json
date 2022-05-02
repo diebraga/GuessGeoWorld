@@ -9,11 +9,13 @@
   "test_your_knowledge_naming_country_flags": "Metti alla prova le tue conoscenze sulle bandiere dei paesi!",
   "africa": "Africa",
   "asia": "Asia",
-  "north_america": "",
-  "south-america": "",
-  "oceania": "",
-  "hard": "",
-  "medium": "",
-  "medium-easy": "",
-  "easy": ""
+  "north_america": "Nord America",
+  "south-america": "Sud America",
+  "oceania": "Oceania",
+  "hard": "Difficile",
+  "medium": "Medio",
+  "medium-easy": "Medio-facile",
+  "easy": "Facile",
+  "europe": "Europa",
+  "choose_modality": "Scegli la modalità"
 }
