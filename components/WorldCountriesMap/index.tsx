@@ -19,6 +19,8 @@ import { HelpCountriesWorldModal } from "./HelpCountriesWorldModal";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { IoMdHelp } from 'react-icons/io'
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { localeType } from "../../@types/localeType";
+import { normalizeWorldCountriesLanguage } from "../../translations/world-countries/normalizeWorldCountriesLanguage";
 
 type FoundCountries = {
   name: string
@@ -27,12 +29,15 @@ type FoundCountries = {
 
 type WorldCountriesMapProps = {
   continent: string
-  seconds: number | undefined
+  seconds: number | undefined,
+  locale: localeType
 }
 
-const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
+const WorldCountriesMap = ({ seconds, continent, locale }: WorldCountriesMapProps) => {
   const filterCountriesByContinent =
     AllCountries.filter(item => item.continent.includes(continent) === true)
+
+  const { translation } = normalizeWorldCountriesLanguage(locale)
 
   const [country, setCountry] = useState('')
   const [countDowKey, setCountDowKey] = useState(0)
@@ -179,6 +184,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
         setModalHelpWorldCountriesWllNotOpen={setModalHelpWorldCountriesWllNotOpen}
         modalHelpWorldCountriesWllNotOpen={modalHelpWorldCountriesWllNotOpen}
         allCountriesLenght={filterCountriesByContinent.length}
+        locale={locale}
       />
 
       <ModalMissedCountries
@@ -236,7 +242,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
             }}
           </CountdownCircleTimer>
           <Link color={useColorModeValue("red.500", "red.400")} fontWeight='bold' onClick={onLeaveGame}>
-            End game
+            {translation.end_game}
           </Link>
         </Flex>
       </Box>
@@ -244,6 +250,7 @@ const WorldCountriesMap = ({ seconds, continent }: WorldCountriesMapProps) => {
       <WorldCountriesMapInput
         country={country}
         setCountry={setCountry}
+        locale={locale}
       />
 
       <WorldCountriesMapCanvas

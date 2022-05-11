@@ -1,22 +1,29 @@
 import { GetServerSideProps } from "next";
+import { localeType } from "../@types/localeType";
 import { HeadComponent } from "../components/HeadComponent";
 import WorldCountriesMap from "../components/WorldCountriesMap";
+import { normalizeWorldCountriesLanguage } from "../translations/world-countries/normalizeWorldCountriesLanguage";
 
 type WorldCountriesProps = {
   continent: string
   seconds: number | undefined
+  locale: localeType
 }
 
-export default function WorldCountries({ seconds, continent }: WorldCountriesProps) {
+export default function WorldCountries({ seconds, continent, locale }: WorldCountriesProps) {
+
+  const { translation } = normalizeWorldCountriesLanguage(locale)
+
   return (
     <div>
       <HeadComponent
-        title="GuessGeoWorld - World countries"
-        description="Quiz world countries game"
+        title={`GuessGeoWorld - ${translation.world_countries}`}
+        description={translation.quiz_world_countries_game}
       />
       <WorldCountriesMap
         seconds={seconds}
         continent={continent}
+        locale={locale}
       />
     </div>
   )

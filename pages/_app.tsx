@@ -15,7 +15,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <SoundProvider>
           <Header locale={router.locale} />
           {/* @ts-ignore */}
-          <Component {...pageProps} />
+          <Component
+            {...pageProps}
+            locale={router.locale}
+          />
         </SoundProvider>
       </MainMenuProvider>
     </ChakraProvider>
