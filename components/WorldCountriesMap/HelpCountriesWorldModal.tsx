@@ -45,7 +45,7 @@ export function HelpCountriesWorldModal({
     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent bg={useColorModeValue("white", "gray.800")} ml="2" mr="2">
-        <ModalHeader> Instructions</ModalHeader>
+        <ModalHeader>{translation.instructions}</ModalHeader>
         <ModalBody mb='1'>
           <Box mb='5'>
             <Image src="/images/help-world-country.png" />

@@ -9,17 +9,22 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import { MutableRefObject } from 'react'
+import { localeType } from '../../@types/localeType'
 import { useWindowSize } from '../../hooks/useWindowSize'
+import { normalizeWorldCountriesLanguage } from '../../translations/world-countries/normalizeWorldCountriesLanguage'
 
 type LeaveWorldCountriesGameAlertProps = {
   leastDestructiveRef: MutableRefObject<undefined>
   isOpen: boolean
   onClose: () => void
   onConfirm: () => void
+  locale: localeType
 }
 
-export function LeaveWorldCountriesGameAlert({ leastDestructiveRef, isOpen, onClose, onConfirm }: LeaveWorldCountriesGameAlertProps) {
+export function LeaveWorldCountriesGameAlert({ leastDestructiveRef, isOpen, onClose, onConfirm, locale }: LeaveWorldCountriesGameAlertProps) {
   const { width } = useWindowSize()
+
+  const { translation } = normalizeWorldCountriesLanguage(locale)
 
   return (
     <AlertDialog
@@ -30,19 +35,19 @@ export function LeaveWorldCountriesGameAlert({ leastDestructiveRef, isOpen, onCl
       <AlertDialogOverlay>
         <AlertDialogContent ml="4" mr="4">
           <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-            Would you like to end this game?
+            {translation.would_you_like_to_end_this_game}
           </AlertDialogHeader>
 
           <AlertDialogBody color={useColorModeValue("red.500", "red.400")}>
-            All your progress will be lost.
+            {translation.all_your_progress_will_be_lost}
           </AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={leastDestructiveRef} onClick={onClose} size={width as number < 400 ? "sm" : "md"}>
-              No
+              {translation.no}
             </Button>
             <Button colorScheme='red' onClick={onConfirm} ml={3} size={width as number < 400 ? "sm" : "md"}>
-              Yes
+              {translation.yes}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

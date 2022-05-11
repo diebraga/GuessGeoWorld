@@ -15,16 +15,21 @@ import {
 import { GiReturnArrow } from "react-icons/gi";
 import { AiFillHome } from "react-icons/ai";
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { localeType } from '../../@types/localeType';
+import { normalizeWorldCountriesLanguage } from '../../translations/world-countries/normalizeWorldCountriesLanguage';
 
 type ModalMissedCountriesProps = {
   isOpen: boolean
   onClose: () => void
   countriesNotFound: { name: string }[]
   onRestart: () => void
+  locale: localeType
 }
 
-export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRestart }: ModalMissedCountriesProps) {
+export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRestart, locale }: ModalMissedCountriesProps) {
   const { width } = useWindowSize()
+
+  const { translation } = normalizeWorldCountriesLanguage(locale)
 
   return (
     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
@@ -44,7 +49,7 @@ export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRes
             ml="4"
             mr="4"
           >
-            <ModalHeader> 😔 Game ended, Countries missing...</ModalHeader>
+            <ModalHeader> 😔 {translation.game_ended} {translation.countries_missing}</ModalHeader>
             <Box ml="24px" mr="24px" >
               <Wrap overflowY='scroll' overflowX='hidden' h="135px">
                 {countriesNotFound && countriesNotFound.map(country => {
@@ -57,7 +62,7 @@ export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRes
                   )
                 })}
               </Wrap>
-              <Text mt="2.5">Total: {countriesNotFound.length}</Text>
+              <Text mt="2.5">{translation.total}: {countriesNotFound.length}</Text>
             </Box>
             <ModalFooter>
               <Button
@@ -67,7 +72,7 @@ export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRes
                 mr={3}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Play again
+                {translation.play_again}
               </Button>
               <Button
                 onClick={onClose}
@@ -75,7 +80,7 @@ export function ModalMissedCountries({ isOpen, onClose, countriesNotFound, onRes
                 rightIcon={<Icon as={AiFillHome} />}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Home
+                {translation.home}
               </Button>
             </ModalFooter>
           </Box>

@@ -9,5 +9,15 @@
   "minutes_to_complete_the_task": "minutes pour terminer la tâche.",
   "good_luck": "Bonne chance.",
   "dont_show_me_again": "Ne me montre plus",
-  "i_understand": "Je comprends"
+  "i_understand": "Je comprends",
+  "instructions": "Des instructions",
+  "would_you_like_to_end_this_game": "Souhaitez-vous terminer le match ?",
+  "all_your_progress_will_be_lost": "Tous vos progrès seront perdus.",
+  "yes": "Oui",
+  "no": "Non",
+  "game_ended": "Jeu terminé,",
+  "countries_missing": "pays manquants...",
+  "total": "Total",
+  "play_again": "Rejouer",
+  "home": "Démarrer"
 }

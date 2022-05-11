@@ -9,5 +9,15 @@
   "minutes_to_complete_the_task": "minutos para completar o jogo.",
   "good_luck": "Boa sorte.",
   "dont_show_me_again": "Não mostrar mais",
-  "i_understand": "Entendi"
+  "i_understand": "Entendi",
+  "instructions": "Instruções",
+  "would_you_like_to_end_this_game": "você gostaria de terminar a partida?",
+  "all_your_progress_will_be_lost": "Todo seu progresso será perdido.",
+  "yes": "Sim",
+  "no": "Não",
+  "game_ended": "Jogo terminado,",
+  "countries_missing": "paises que faltam...",
+  "total": "Total",
+  "play_again": "Jogar de novo",
+  "home": "Início"
 }

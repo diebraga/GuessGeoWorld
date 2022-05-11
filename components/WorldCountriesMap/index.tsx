@@ -192,6 +192,7 @@ const WorldCountriesMap = ({ seconds, continent, locale }: WorldCountriesMapProp
         onClose={onConfirmLeaveGame}
         countriesNotFound={countriesNotFound}
         onRestart={onRestartGame}
+        locale={locale}
       />
 
       <LeaveWorldCountriesGameAlert
@@ -199,6 +200,7 @@ const WorldCountriesMap = ({ seconds, continent, locale }: WorldCountriesMapProp
         onClose={leaveGameOnCloseAlert}
         leastDestructiveRef={cancelRef}
         onConfirm={onConfirmLeaveGameAlert}
+        locale={locale}
       />
 
       <FoundAllCountriesModal
