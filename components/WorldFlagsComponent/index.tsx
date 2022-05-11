@@ -1,4 +1,4 @@
-import { Box, Heading, Icon, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Heading, Icon, IconButton, Input, useDisclosure, useToast } from "@chakra-ui/react";
 import { WorldFlagsCarousel } from "./WorldFlagsCarousel";
 import { allCountriesFlags } from "../../utils/allCountriesFlags";
 import { useEffect, useState } from "react";
@@ -226,14 +226,17 @@ export function WorldFlagsComponent({ continent, seconds }: WorldFlagsComponentP
         Name this country
       </Heading>
 
-      <WorldFlagsCarousel
-        countryFlagInput={countryFlagInput}
-        setCountryFlagInput={setCountryFlagInput}
+      <Input
+        maxLength={30}
         isDisabled={updatedCurrentFlag?.found || false}
+        onChange={e => setCountryFlagInput(e.target.value)}
+        value={countryFlagInput}
+        textAlign='center' />
+
+      <WorldFlagsCarousel
         allFlags={AllCountriesFlags}
         setAllFlagsIndex={setAllFlagsIndex}
         carouselRef={carouselRef}
-        currentFlag={currentFlag}
       />
       <WorldFlagsFoundStatus
         totalLenght={AllCountriesFlags.length}

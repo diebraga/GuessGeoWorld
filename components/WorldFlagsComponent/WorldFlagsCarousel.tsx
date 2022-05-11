@@ -16,20 +16,12 @@ type WorldFlagsCarouselProps = {
   allFlags: AllCountryFlagsTypes[]
   setAllFlagsIndex: Dispatch<SetStateAction<number>>
   carouselRef: MutableRefObject<any>
-  setCountryFlagInput: Dispatch<SetStateAction<string>>
-  countryFlagInput: string
-  isDisabled: boolean
-  currentFlag: AllCountryFlagsTypes
 }
 
 export function WorldFlagsCarousel({
   allFlags,
   setAllFlagsIndex,
   carouselRef,
-  setCountryFlagInput,
-  countryFlagInput,
-  isDisabled,
-  currentFlag
 }: WorldFlagsCarouselProps) {
   const { menuIsOpen } = useMainMenu()
 
@@ -83,13 +75,9 @@ export function WorldFlagsCarousel({
         }}
       >
         {allFlags.map((flag) => <WorldFlagCard
-          isDisabled={isDisabled}
-          setCountryFlagInput={setCountryFlagInput}
-          countryFlagInput={countryFlagInput}
           code={flag.code}
           key={flag.code}
           currentFlagWasFound={flag.found}
-          currentFlag={currentFlag}
           name={flag.name} />)}
       </Carousel>
     </Box>
