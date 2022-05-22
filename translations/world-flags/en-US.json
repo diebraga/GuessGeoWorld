@@ -1,7 +1,6 @@
 {
   "world_flags": "World flags",
   "end_game": "End game",
-  "world_countries": "World countries",
   "quiz_world_countries_game": "Quiz world countries game",
   "your_goal_is_find": "Your goal is find",
   "missing_flags": "missing flags.",
@@ -16,7 +15,6 @@
   "yes": "Yes",
   "no": "No",
   "game_ended": "Game ended,",
-  "countries_missing": "Countries missing...",
   "total": "Total",
   "play_again": "Play again",
   "home": "Home"

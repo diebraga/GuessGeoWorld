@@ -118,7 +118,10 @@ const WorldCountriesMap = ({ seconds, continent, locale }: WorldCountriesMapProp
       startSuccessSound()
       toast({
         position: 'top',
-        render: () => <FoundNewCountryToast countryName={findCountryHelper(country)} />
+        render: () => <FoundNewCountryToast
+          countryName={findCountryHelper(country)}
+          locale={locale}
+        />
       })
     }
   }

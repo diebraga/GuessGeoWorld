@@ -1,7 +1,6 @@
 {
   "world_flags": "Drapeaux du monde",
   "end_game": "Terminer le jeu",
-  "world_countries": "Pays du monde",
   "quiz_world_countries_game": "Quizz les pays du monde",
   "your_goal_is_find": "Votre objectif est de trouver",
   "missing_flags": "Drapeaux manquants",
@@ -16,7 +15,6 @@
   "yes": "Oui",
   "no": "Non",
   "game_ended": "Jeu terminé,",
-  "countries_missing": "pays manquants...",
   "total": "Total",
   "play_again": "Rejouer",
   "home": "Démarrer"

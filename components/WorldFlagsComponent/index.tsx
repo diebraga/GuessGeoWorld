@@ -217,6 +217,7 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
         isOpen={failFlagsModalIsOpen}
         onRestart={onRestartNewGame}
         flagsNotFound={notFoundFlags}
+        locale={locale}
       />
       <Box left='10px' top='45px' position='absolute'>
         <IconButton

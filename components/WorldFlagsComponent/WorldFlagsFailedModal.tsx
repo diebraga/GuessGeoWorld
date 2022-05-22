@@ -22,6 +22,8 @@ import { useWindowSize } from '../../hooks/useWindowSize';
 import Flag from 'react-world-flags'
 import Carousel from 'react-multi-carousel';
 import { useMainMenu } from '../../hooks/useMainMenu';
+import { localeType } from '../../@types/localeType';
+import { normalizeWorldFlagsLanguage } from '../../translations/world-flags/normalizeWorldFlagsLanguage';
 
 type AllCountryFlagsTypes = {
   name: string
@@ -34,10 +36,13 @@ type ModalMissedCountriesProps = {
   onClose: () => void
   flagsNotFound: AllCountryFlagsTypes[]
   onRestart: () => void
+  locale: localeType
 }
 
-export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestart }: ModalMissedCountriesProps) {
+export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestart, locale }: ModalMissedCountriesProps) {
   const { width } = useWindowSize()
+
+  const { translation } = normalizeWorldFlagsLanguage(locale)
 
   const { menuIsOpen } = useMainMenu()
   return (
@@ -58,7 +63,7 @@ export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestar
             ml="4"
             mr="4"
           >
-            <ModalHeader> 😔 Game ended, Flags missing...</ModalHeader>
+            <ModalHeader> 😔 {translation.game_ended}, {translation.missing_flags}...</ModalHeader>
             <Box ml="24px" mr="24px" >
               <Carousel
                 additionalTransfrom={0}
@@ -117,7 +122,7 @@ export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestar
                   )
                 })}
               </Carousel>
-              <Text mt="2.5" fontWeight='500'>Total: {flagsNotFound.length}</Text>
+              <Text mt="2.5" fontWeight='500'>{translation.total}: {flagsNotFound.length}</Text>
             </Box>
             <ModalFooter>
               <Button
@@ -127,7 +132,7 @@ export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestar
                 mr={3}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Play again
+                {translation.play_again}
               </Button>
               <Button
                 onClick={onClose}
@@ -135,7 +140,7 @@ export function WorldFlagsFailedModal({ isOpen, onClose, flagsNotFound, onRestar
                 rightIcon={<Icon as={AiFillHome} />}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Home
+                {translation.home}
               </Button>
             </ModalFooter>
           </Box>

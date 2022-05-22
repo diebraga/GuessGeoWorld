@@ -1,7 +1,6 @@
 {
   "world_flags": "Bandeiras do mundo",
   "end_game": "Terminar o jogo",
-  "world_countries": "Países do mundo",
   "quiz_world_countries_game": "Quiz países do mundo",
   "your_goal_is_find": "Seu objetivo é encontrar",
   "missing_flags": "Bandeiras que faltam.",
@@ -16,7 +15,6 @@
   "yes": "Sim",
   "no": "Não",
   "game_ended": "Jogo terminado,",
-  "countries_missing": "paises que faltam...",
   "total": "Total",
   "play_again": "Jogar de novo",
   "home": "Início"

@@ -19,5 +19,6 @@
   "countries_missing": "Countries missing...",
   "total": "Total",
   "play_again": "Play again",
-  "home": "Home"
+  "home": "Home",
+  "a_new_country_was_found": "A new country was found"
 }
