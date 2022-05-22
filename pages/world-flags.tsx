@@ -1,22 +1,28 @@
 import { GetServerSideProps } from "next";
+import { localeType } from "../@types/localeType";
 import { HeadComponent } from "../components/HeadComponent";
 import { WorldFlagsComponent } from "../components/WorldFlagsComponent";
+import { normalizeWorldFlagsLanguage } from "../translations/world-flags/normalizeWorldFlagsLanguage";
 
 type WorldFlagsProps = {
   continent: string
   seconds: number | undefined
+  locale: localeType
 }
 
-export default function WorldFlags({ continent, seconds }: WorldFlagsProps) {
+export default function WorldFlags({ continent, seconds, locale }: WorldFlagsProps) {
+  const { translation } = normalizeWorldFlagsLanguage(locale)
+
   return (
     <>
       <HeadComponent
-        title="GuessGeoWorld - Country flags"
-        description="Quiz country flags"
+        title={`GuessGeoWorld - ${translation.world_flags}`}
+        description={`Quiz ${translation.world_flags}`}
       />
       <WorldFlagsComponent
         continent={continent}
         seconds={seconds}
+        locale={locale}
       />
     </>
   )

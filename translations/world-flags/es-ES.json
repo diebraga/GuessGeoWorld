@@ -1,0 +1,23 @@
+{
+  "world_flags": "Bandreras del mundo",
+  "end_game": "Terminar el juego",
+  "world_countries": "Países del mundo",
+  "quiz_world_countries_game": "Quiz países del mundo",
+  "your_goal_is_find": "Tu objetivo es encontrar",
+  "missing_flags": "Banderas que faltan.",
+  "you_have": "Tienes",
+  "minutes_to_complete_the_task": "minutos para completar la task.",
+  "good_luck": "Buena suerte.",
+  "dont_show_me_again": "No me vuelvas a mostrar",
+  "i_understand": "Entendido",
+  "instructions": "Instrucciones",
+  "would_you_like_to_end_this_game": "¿Te gustaría de terminar el juego?",
+  "all_your_progress_will_be_lost": "¡Todo tu progreso se perderá!",
+  "yes": "Si",
+  "no": "No",
+  "game_ended": "Juego terminado,",
+  "countries_missing": "Países que faltan...",
+  "total": "Total",
+  "play_again": "Nueva partida",
+  "home": "Inicio"
+}

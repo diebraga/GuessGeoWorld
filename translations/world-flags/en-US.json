@@ -1,0 +1,23 @@
+{
+  "world_flags": "World flags",
+  "end_game": "End game",
+  "world_countries": "World countries",
+  "quiz_world_countries_game": "Quiz world countries game",
+  "your_goal_is_find": "Your goal is find",
+  "missing_flags": "missing flags.",
+  "you_have": "You have",
+  "minutes_to_complete_the_task": "minutes to complete the task.",
+  "good_luck": "Good Luck.",
+  "dont_show_me_again": "Don't show me again",
+  "i_understand": "I understand",
+  "instructions": "Instructions",
+  "would_you_like_to_end_this_game": "Would you like to end this game?",
+  "all_your_progress_will_be_lost": "All your progress will be lost?",
+  "yes": "Yes",
+  "no": "No",
+  "game_ended": "Game ended,",
+  "countries_missing": "Countries missing...",
+  "total": "Total",
+  "play_again": "Play again",
+  "home": "Home"
+}

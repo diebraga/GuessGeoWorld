@@ -15,6 +15,7 @@ import { WorldFlagsFoundStatus } from "./WorldFlagsFoundStatus";
 import { WorldFlagsModalHelp } from "./WorldFlagsModalHelp";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { IoMdHelp } from "react-icons/io";
+import { localeType } from "../../@types/localeType";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -25,12 +26,13 @@ type AllCountryFlagsTypes = {
 type WorldFlagsComponentProps = {
   continent: string
   seconds: number
+  locale: localeType
 }
 
 const randomFlags = allCountriesFlags.sort(() => Math.random() - 0.5)
 
 
-export function WorldFlagsComponent({ continent, seconds }: WorldFlagsComponentProps) {
+export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsComponentProps) {
   const [AllCountriesFlags, setAllCountriesFlags] = useState<AllCountryFlagsTypes[]>(
     randomFlags.
       splice(0,
@@ -193,6 +195,7 @@ export function WorldFlagsComponent({ continent, seconds }: WorldFlagsComponentP
         setWorldFlagsModalHelpWllNotOpen={setWorldFlagsModalHelpWllNotOpen}
         worldFlagsModalHelpWillNotOpen={worldFlagsModalHelpWillNotOpen}
         totalSeconds={secondsTimer}
+        locale={locale}
       />
 
       <FoundAllFlagsModal
