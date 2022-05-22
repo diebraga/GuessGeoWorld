@@ -209,6 +209,7 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
         onClose={leaveGameOnCloseAlert}
         leastDestructiveRef={cancelRef}
         onConfirm={confirmAlertLeaveGame}
+        locale={locale}
       />
 
       <WorldFlagsFailedModal
@@ -248,6 +249,7 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
         onLeave={leaveGameOnOpenAlert}
         flagFound={updatedCurrentFlag?.found || false}
         currentSeconds={currentSeconds}
+        locale={locale}
       />
     </Box >
   )

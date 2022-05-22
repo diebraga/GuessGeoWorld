@@ -11,7 +11,9 @@ import {
   Badge,
   Button,
 } from '@chakra-ui/react'
+import { localeType } from '../../@types/localeType';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { normalizeWorldFlagsLanguage } from '../../translations/world-flags/normalizeWorldFlagsLanguage';
 import { convertSecoundsToMmSs } from '../../utils/convertSecoundsToMmSs';
 
 type WorldFlagsFoundStatusProps = {
@@ -21,9 +23,12 @@ type WorldFlagsFoundStatusProps = {
   onLeave: () => void
   flagFound: boolean
   currentSeconds: number
+  locale: localeType
 }
 
-export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave, flagFound, currentSeconds }: WorldFlagsFoundStatusProps) {
+export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNumber, onLeave, flagFound, currentSeconds, locale }: WorldFlagsFoundStatusProps) {
+  const { translation } = normalizeWorldFlagsLanguage(locale)
+
   const { width } = useWindowSize()
 
   const isSmallerThan400px = width < 400
@@ -33,7 +38,7 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
       <Table variant='unstyled' size='sm'>
         <TableCaption mt='0'>
           <Button isFullWidth colorScheme='red' variant='outline' onClick={onLeave} size={isSmallerThan400px ? "sm" : "md"}>
-            Leave Game
+            {translation.end_game}
           </Button>
         </TableCaption>
 
