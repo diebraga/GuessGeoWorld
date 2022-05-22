@@ -21,5 +21,10 @@
   "found": "found",
   "current": "Current",
   "time": "time",
-  "of": "of"
+  "of": "of",
+  "youve_completed_the_game": "You've completed the game.",
+  "congratulations": "Congratulations!",
+  "a_new_flag_was_found": "A new flag was found.",
+  "name_this_country": "Name this country",
+  "not_found": "Not found"
 }

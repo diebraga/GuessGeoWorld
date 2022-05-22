@@ -21,5 +21,10 @@
   "found": "Trovato",
   "current": "Attuale",
   "time": "Tempo",
-  "of": "di"
+  "of": "di",
+  "youve_completed_the_game": "Hai completato la partita.",
+  "congratulations": "Ben fatto!",
+  "a_new_flag_was_found": "Nouva bandiera trovata!",
+  "name_this_country": "Qual è questo paese?",
+  "not_found": "Non trovato"
 }

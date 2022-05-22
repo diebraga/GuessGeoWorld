@@ -20,5 +20,7 @@
   "total": "Total",
   "play_again": "Play again",
   "home": "Home",
-  "a_new_country_was_found": "A new country was found"
+  "a_new_country_was_found": "A new country was found",
+  "youve_completed_the_game": "You've completed the game.",
+  "congratulations": "Congratulations!"
 }

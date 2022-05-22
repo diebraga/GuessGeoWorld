@@ -210,6 +210,7 @@ const WorldCountriesMap = ({ seconds, continent, locale }: WorldCountriesMapProp
         isOpen={completedCountriesModalIsOpen}
         onClose={onCloseMapModal}
         onRestart={onRestartGame}
+        locale={locale}
       />
 
       <Box pl="3" pr="3" pt="0" mt={isSmallerThan480px ? "45px" : "2"}>

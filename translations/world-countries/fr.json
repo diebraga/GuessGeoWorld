@@ -20,5 +20,7 @@
   "total": "Total",
   "play_again": "Rejouer",
   "home": "Démarrer",
-  "a_new_country_was_found": "Nouveau pays trouvé"
+  "a_new_country_was_found": "Nouveau pays trouvé",
+  "youve_completed_the_game": "Vous avez terminé le jeu.",
+  "congratulations": "Bon travail !"
 }

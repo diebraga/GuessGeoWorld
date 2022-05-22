@@ -67,7 +67,7 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
                 {currentFlagNumber}
               </Text>
               <Badge variant='outline' colorScheme={flagFound ? "green" : "red"} ml='1.5' size='xsm'>
-                {flagFound ? "Found" : "Not found"}
+                {flagFound ? translation.found : translation.not_found}
               </Badge>
             </Td>
             <Td isNumeric>

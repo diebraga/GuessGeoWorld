@@ -16,6 +16,7 @@ import { WorldFlagsModalHelp } from "./WorldFlagsModalHelp";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { IoMdHelp } from "react-icons/io";
 import { localeType } from "../../@types/localeType";
+import { normalizeWorldFlagsLanguage } from "../../translations/world-flags/normalizeWorldFlagsLanguage";
 
 type AllCountryFlagsTypes = {
   name: string
@@ -40,6 +41,8 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
         ...randomFlags.
           filter(item => item.continent.
             includes(continent) === true)))
+
+  const { translation } = normalizeWorldFlagsLanguage(locale)
 
   const [worldFlagsModalHelpWillNotOpen, setWorldFlagsModalHelpWllNotOpen] = useLocalStorage("worldFlagsModalHelpWillOpen", false)
 
@@ -89,7 +92,9 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
       startSuccessSound()
       toast({
         position: 'top',
-        render: () => <FoundNewFlagToast flagName={currentFlag.name} />
+        render: () => <FoundNewFlagToast
+          locale={locale}
+          flagName={currentFlag.name} />
       })
       setAllCountriesFlags(
         (data) => {
@@ -202,6 +207,7 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
         onClose={() => router.push('/')}
         onRestart={onRestartNewGame}
         isOpen={completedFlagsModalIsOpen}
+        locale={locale}
       />
 
       <LeaveCountryFlagsAlert
@@ -228,7 +234,7 @@ export function WorldFlagsComponent({ continent, seconds, locale }: WorldFlagsCo
       </Box>
 
       <Heading mb='1' textAlign='center' as="h1" mt="10%">
-        Name this country
+        {translation.name_this_country}
       </Heading>
 
       <Input

@@ -14,15 +14,20 @@ import { Confetti } from '../Confetti'
 import { GiReturnArrow } from "react-icons/gi";
 import { AiFillHome } from "react-icons/ai";
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { localeType } from '../../@types/localeType';
+import { normalizeWorldFlagsLanguage } from '../../translations/world-flags/normalizeWorldFlagsLanguage';
 
 type FoundAllFlagsModalProps = {
   isOpen: boolean
   onClose: () => void
   onRestart: () => void
+  locale: localeType
 }
 
-export function FoundAllFlagsModal({ isOpen, onClose, onRestart }: FoundAllFlagsModalProps) {
+export function FoundAllFlagsModal({ isOpen, onClose, onRestart, locale }: FoundAllFlagsModalProps) {
   const { width } = useWindowSize()
+
+  const { translation } = normalizeWorldFlagsLanguage(locale)
 
   return (
     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
@@ -43,7 +48,7 @@ export function FoundAllFlagsModal({ isOpen, onClose, onRestart }: FoundAllFlags
             ml="4"
             mr="4"
           >
-            <ModalHeader><Text as='span' color={useColorModeValue("blue.500", "blue.400")}>Congratulations!,</Text> {"You've completed the game!"} </ModalHeader>
+            <ModalHeader><Text as='span' color={useColorModeValue("blue.500", "blue.400")}>{translation.congratulations},</Text> {translation.youve_completed_the_game} </ModalHeader>
             <ModalFooter>
               <Button
                 onClick={onClose}
@@ -52,7 +57,7 @@ export function FoundAllFlagsModal({ isOpen, onClose, onRestart }: FoundAllFlags
                 rightIcon={<Icon as={AiFillHome} />}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Home
+                {translation.home}
               </Button>
               <Button
                 colorScheme='linkedin'
@@ -60,7 +65,7 @@ export function FoundAllFlagsModal({ isOpen, onClose, onRestart }: FoundAllFlags
                 onClick={onRestart}
                 size={width as number < 400 ? "sm" : "md"}
               >
-                Play again
+                {translation.play_again}
               </Button>
             </ModalFooter>
           </Box>
