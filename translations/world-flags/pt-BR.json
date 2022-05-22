@@ -17,5 +17,9 @@
   "game_ended": "Jogo terminado,",
   "total": "Total",
   "play_again": "Jogar de novo",
-  "home": "Início"
+  "home": "Início",
+  "found": "Encontrado",
+  "current": "Atual",
+  "time": "Tempo",
+  "of": "de"
 }

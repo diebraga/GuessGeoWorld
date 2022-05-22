@@ -17,5 +17,9 @@
   "game_ended": "Game ended,",
   "total": "Total",
   "play_again": "Play again",
-  "home": "Home"
+  "home": "Home",
+  "found": "found",
+  "current": "Current",
+  "time": "time",
+  "of": "of"
 }

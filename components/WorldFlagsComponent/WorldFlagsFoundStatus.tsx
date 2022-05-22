@@ -44,9 +44,9 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
 
         <Thead>
           <Tr>
-            <Th>Found</Th>
-            <Th>Current</Th>
-            <Th isNumeric>Time</Th>
+            <Th>{translation.found}</Th>
+            <Th>{translation.current}</Th>
+            <Th isNumeric>{translation.time}</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -56,7 +56,7 @@ export function WorldFlagsFoundStatus({ foundLenght, totalLenght, currentFlagNum
                 {foundLenght}
               </Text>
               <Text as='span' fontSize='md' fontWeight='400' mx='1'>
-                of
+                {translation.of}
               </Text>
               <Text as='span' fontSize={isSmallerThan400px ? "large" : "x-large"} fontWeight='bold'>
                 {totalLenght}
